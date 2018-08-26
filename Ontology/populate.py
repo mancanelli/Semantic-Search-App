@@ -75,7 +75,6 @@ with open('../Data/books_res.csv', 'r') as csvfile:
 			
 			g.add((rdflib.URIRef(link + title), rdflib.URIRef(link + "#writtenBy"), rdflib.URIRef(link + author)))
 
-
 with open('../Data/games_res.csv', 'r') as csvfile:
 	csv_reader = csv.reader(csvfile, delimiter=',')
 	
@@ -148,7 +147,7 @@ with open('../Data/games_res.csv', 'r') as csvfile:
 				
 				g.add((rdflib.URIRef(link + title), rdflib.URIRef(link + "#developedBy"), rdflib.URIRef(link + dev)))
 
-
+""""
 with open('../Data/song_res.csv', 'r') as csvfile:
 	csv_reader = csv.reader(csvfile, delimiter=',')
 	
@@ -180,6 +179,7 @@ with open('../Data/song_res.csv', 'r') as csvfile:
 				
 				g.add((rdflib.URIRef(link + title), rdflib.URIRef(link + "#playedBy"), rdflib.URIRef(link + art)))
 		
+"""
 
 with open('../Data/album_res.csv', 'r') as csvfile:
 	csv_reader = csv.reader(csvfile, delimiter=',')
@@ -247,7 +247,6 @@ with open('../Data/album_res.csv', 'r') as csvfile:
 		if row[6]:
 			for elem in literal_eval(row[6]):
 				g.add((rdflib.URIRef(link + title), rdflib.URIRef(link + "#album_genre"), rdflib.Literal(elem)))
-
 
 with open('../Data/movies_res.csv', 'r') as csvfile:
 	csv_reader = csv.reader(csvfile, delimiter=',')
@@ -375,7 +374,7 @@ with open('../Data/movies_res.csv', 'r') as csvfile:
 					g.add((rdflib.URIRef(link + title), rdflib.URIRef(link + "#musicBy"), rdflib.URIRef(link + mm)))
 
 
-f = open("populated.owl", "wb")
+f = open("only_album.owl", "wb")
 f.write(g.serialize(format='xml'))
 f.close()
 
