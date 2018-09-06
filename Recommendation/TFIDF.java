@@ -2,81 +2,81 @@ package similarity;
 
 import java.util.*;
 
-import entities.Movie;
+import entities.*;
 
 public class TFIDF {
-	private ArrayList<Movie> movies;
-	
-	public TFIDF(ArrayList<Movie> movies) {
-		this.movies = movies;
+	private ArrayList<Object> items;
+
+	public TFIDF(ArrayList<Object> items) {
+		this.items = items;
 	}
-	
-	public double yearTFIDF(Movie ref, Movie rnd) {
+
+	public double albumYearTFIDF(Object ref, Object rnd) {
 		double tf = 0;
 		double idf = 0;
 		int cnt = 0;
-		
-		if(rnd.getYear().equals(ref.getYear()))
+
+		if(((Album) rnd).getYear().equals(((Album) ref).getYear()))
 			tf++;
-		
-		for(Movie movie : movies)
-			if(movie.getYear().equals(ref.getYear()))
+
+		for(Object item : items)
+			if(((Album) item).getYear().equals(((Album) ref).getYear()))
 				cnt++;
-		
-		idf = Math.log10(((double) movies.size()) / ((double) cnt));
-		
+
+		idf = Math.log10(((double) items.size()) / ((double) cnt));
+
 		return tf * idf;
 	}
-	
-	public double artistTFIDF(Movie ref, Movie rnd) {
+
+	public double albumArtistTFIDF(Object ref, Object rnd) {
 		double tf = 0;
 		double idf = 0;
 		int cnt = 0;
-		
-		for(int i = 0; i < rnd.getArtists().size(); i++)
-			for(int j = 0; j < ref.getArtists().size(); j++)
-				if(rnd.getArtists().get(i).equals(ref.getArtists().get(j)))
+
+		for(int i = 0; i < ((Album) rnd).getArtists().size(); i++)
+			for(int j = 0; j < ((Album) ref).getArtists().size(); j++)
+				if(((Album) rnd).getArtists().get(i).equals(((Album) ref).getArtists().get(j)))
 					tf++;
-		
-		if(rnd.getArtists().size() > 1)
-			tf = tf / rnd.getArtists().size();
+
+		if(((Album) rnd).getArtists().size() > 1)
+			tf = tf / ((Album) rnd).getArtists().size();
 		else
 			tf = tf / 2;
-		
-		for(Movie movie : movies)
-			for(int i = 0; i < movie.getArtists().size(); i++)
-				for(int j = 0; j < ref.getArtists().size(); j++)
-					if(movie.getArtists().get(i).equals(ref.getArtists().get(j)))
+
+		for(Object item : items)
+			for(int i = 0; i < ((Album) item).getArtists().size(); i++)
+				for(int j = 0; j < ((Album) ref).getArtists().size(); j++)
+					if(((Album) item).getArtists().get(i).equals(((Album) ref).getArtists().get(j)))
 						cnt++;
-		
-		idf = Math.log10(((double) movies.size()) / ((double) cnt));
-		
+
+		idf = Math.log10(((double) items.size()) / ((double) cnt));
+
 		return tf * idf;
 	}
-	
-	public double genreTFIDF(Movie ref, Movie rnd) {
+
+	public double albumGenreTFIDF(Object ref, Object rnd) {
 		double tf = 0;
 		double idf = 0;
 		int cnt = 0;
-		
-		for(int i = 0; i < rnd.getGenres().size(); i++)
-			for(int j = 0; j < ref.getGenres().size(); j++)
-				if(rnd.getGenres().get(i).equals(ref.getGenres().get(j)))
+
+		for(int i = 0; i < ((Album) rnd).getGenres().size(); i++)
+			for(int j = 0; j < ((Album) ref).getGenres().size(); j++)
+				if(((Album) rnd).getGenres().get(i).equals(((Album) ref).getGenres().get(j)))
 					tf++;
-		
-		if(rnd.getGenres().size() > 1)
-			tf = tf / rnd.getGenres().size();
+
+		if(((Album) rnd).getGenres().size() > 1)
+			tf = tf / ((Album) rnd).getGenres().size();
 		else
 			tf = tf / 2;
-		
-		for(Movie movie : movies)
-			for(int i = 0; i < movie.getGenres().size(); i++)
-				for(int j = 0; j < ref.getGenres().size(); j++)
-					if(movie.getGenres().get(i).equals(ref.getGenres().get(j)))
+
+		for(Object item : items)
+			for(int i = 0; i < ((Album) item).getGenres().size(); i++)
+				for(int j = 0; j < ((Album) ref).getGenres().size(); j++)
+					if(((Album) item).getGenres().get(i).equals(((Album) ref).getGenres().get(j)))
 						cnt++;
-		
-		idf = Math.log10(((double) movies.size()) / ((double) cnt));
-		
+
+		idf = Math.log10(((double) items.size()) / ((double) cnt));
+
 		return tf * idf;
 	}
 }

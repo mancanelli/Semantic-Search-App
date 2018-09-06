@@ -2,59 +2,59 @@ package recommender;
 
 import java.util.*;
 
-import entities.Movie;
+import entities.*;
 import similarity.*;
 
 public class Recommender {
-	private ArrayList<Movie> movies;
+	private ArrayList<Object> items;
 	private TFIDF tfidf;
 
-	public Recommender(ArrayList<Movie> movies) {
-		this.movies = movies;
-		this.tfidf = new TFIDF(movies);
+	public Recommender(ArrayList<Object> items) {
+		this.items = items;
+		this.tfidf = new TFIDF(items);
 	}
-	
-	public double[] vectorize(Movie ref, Movie rnd) {
+
+	public double[] albumVector(Object ref, Object rnd) {
 		double[] vec = new double[3];
-		
-		vec[0] = tfidf.yearTFIDF(ref, rnd);
-		vec[1] = tfidf.artistTFIDF(ref, rnd);
-		vec[2] = tfidf.genreTFIDF(ref, rnd);
-		
+
+		vec[0] = tfidf.albumYearTFIDF(ref, rnd);
+		vec[1] = tfidf.albumArtistTFIDF(ref, rnd);
+		vec[2] = tfidf.albumGenreTFIDF(ref, rnd);
+
 		return vec;
 	}
 
-	public ArrayList<Movie> recommendation(Movie ref) {
-		HashMap<Movie, Double> valued = new HashMap<Movie, Double>();
-		
-		double[] refVec = vectorize(ref, ref);
-		
-		for(int i = 0; i < movies.size(); i++) {
-			double[] rndVec = vectorize(ref, movies.get(i));
+	public ArrayList<Object> recommendation(Object ref) {
+		HashMap<Object, Double> valued = new HashMap<Object, Double>();
+
+		double[] refVec = albumVector(ref, ref);
+
+		for(Object item : items) {
+			double[] rndVec = albumVector(ref, item);
 			double val = Similarity.cosineSimilarity(refVec, rndVec);
-			
-			if(!(movies.get(i).equals(ref))) {
-				valued.put(movies.get(i), val);
-				
+
+			if(!(((Album) item).equals(((Album) ref)))) {
+				valued.put(item, val);
+
 				double minVal = 1.0;
-				Movie rem = ref;
-				
+				Object rem = ref;
+
 				if(valued.keySet().size() > 5) {
-					
-					for(Map.Entry<Movie, Double> entry : valued.entrySet()) {
+
+					for(Map.Entry<Object, Double> entry : valued.entrySet()) {
 						if(entry.getValue() < minVal) {
 							rem = entry.getKey();
 							minVal = entry.getValue();
 						}
 					}
-					
+
 					valued.remove(rem);
 				}
-				
+
 			}
 		}
-		
-		ArrayList<Movie> res = new ArrayList<Movie>(valued.keySet());
+
+		ArrayList<Object> res = new ArrayList<Object>(valued.keySet());
 		return res;
 	}
 }
