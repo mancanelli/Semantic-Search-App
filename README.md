@@ -4,6 +4,7 @@
 
 ### Datasets
 I dati non sono presenti nel repository.
+
 Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
 
 ### ONTOLOGY
@@ -26,41 +27,41 @@ Risultati:
 
 ### Recommendation
 
-* Java (Jena)
-  1. entities
+1. Java (Jena)
+   * entities
      - Album.java
      - Book.java
      - Game.java
      - Movie.java
-  2. similarity
+   * similarity
      - TFIDF.java
      - Similarity.java
-  3. recommender
+   * recommender
      - Recommender.java
-  4. query
+   * query
      - MyQuery.java
-  5. main
+   * main
      - Main.java
 
 Risultati: (da generare)
-1. album_rec.owl
-2. book_rec.owl
-3. game_rec.owl
-4. movie_rec.owl
+* album_rec.owl
+* book_rec.owl
+* game_rec.owl
+* movie_rec.owl
 
 ## Web
 
-* Node.js (Express)
-  1. app.js
-  2. routes
+1. Node.js (Express)
+   * app.js
+   * routes
      - index.js
      - music.js
      - books.js
      - games.js
      - movies.js
-  3. public/javascripts
+   * public/javascripts
      - query.js (rdflib)
-  4. views
+   * views
      - index.ejs
      - error.ejs
      - music.ejs
@@ -68,7 +69,7 @@ Risultati: (da generare)
      - games.ejs
      - movies.ejs
      - info.ejs
-  5. public/stylesheets
+   * public/stylesheets
      - index.css
      - music.css
      - books.css
@@ -77,5 +78,5 @@ Risultati: (da generare)
      - info.css
     
 Esecuzione:
-1. node app.js
-2. localhost:3000/
+* node app.js
+* localhost:3000/
