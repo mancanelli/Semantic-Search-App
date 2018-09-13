@@ -18,12 +18,11 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
    * game_triples.py
    * movie_triples.py
    * main.py
-
-Risultati:
-* album_triples.owl
-* book_triples.owl
-* game_triples.owl
-* movie_triples.owl
+3. Risultati
+   * album_triples.owl
+   * book_triples.owl
+   * game_triples.owl
+   * movie_triples.owl
 
 ### Recommendation
 
@@ -42,14 +41,13 @@ Risultati:
      - MyQuery.java
    * main
      - Main.java
+2. Risultati (da generare)
+   * album_rec.owl
+   * book_rec.owl
+   * game_rec.owl
+   * movie_rec.owl
 
-Risultati: (da generare)
-* album_rec.owl
-* book_rec.owl
-* game_rec.owl
-* movie_rec.owl
-
-## Web
+### Web
 
 1. Node.js (Express)
    * app.js
@@ -76,7 +74,7 @@ Risultati: (da generare)
      - games.css
      - movies.css
      - info.css
-    
-Esecuzione:
-* node app.js
-* localhost:3000/
+
+### Esecuzione
+node app.js
+localhost:3000/
