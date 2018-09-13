@@ -76,5 +76,7 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
      - info.css
 
 ### Esecuzione
+
 node app.js
+
 localhost:3000/
