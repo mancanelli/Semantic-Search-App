@@ -8,9 +8,9 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
 
 ### ONTOLOGY
 
-* Protégé
+1. Protégé
   1. myontology.owl
-* Python (rdflib)
+2. Python (rdflib)
   1. formatURI.py
   2. album_triples.py
   3. book_triples.py
