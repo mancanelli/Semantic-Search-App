@@ -9,7 +9,7 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
 ### ONTOLOGY
 
 1. Protégé
-  * myontology.owl
+ - myontology.owl
 2. Python (rdflib)
   * formatURI.py
   * album_triples.py
