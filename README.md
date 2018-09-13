@@ -7,7 +7,7 @@ I dati non sono presenti nel repository.
 
 Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
 
-### ONTOLOGY
+### Ontology
 
 1. Protégé
    * myontology.owl
