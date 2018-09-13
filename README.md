@@ -5,7 +5,7 @@
 ### Datasets
 I dati non sono presenti nel repository.
 
-Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com, relative ai campi di interesse (album musicali, film, videogiochi e film)
+Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com, relative ai campi di interesse (album musicali, film, videogiochi e libri)
 
 ### Ontology
 
