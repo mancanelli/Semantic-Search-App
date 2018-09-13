@@ -9,20 +9,20 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com
 ### ONTOLOGY
 
 1. Protégé
- - myontology.owl
+   * myontology.owl
 2. Python (rdflib)
-  * formatURI.py
-  * album_triples.py
-  * book_triples.py
-  * game_triples.py
-  * movie_triples.py
-  * main.py
+   * formatURI.py
+   * album_triples.py
+   * book_triples.py
+   * game_triples.py
+   * movie_triples.py
+   * main.py
 
 Risultati
-  * album_triples.owl
-  * book_triples.owl
-  * game_triples.owl
-  * movie_triples.owl
+* album_triples.owl
+* book_triples.owl
+* game_triples.owl
+* movie_triples.owl
 
 ### Recommendation
 
