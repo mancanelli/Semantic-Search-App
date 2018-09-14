@@ -5,7 +5,7 @@
         <title><%= title %></title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <!--<link rel='stylesheet' href='/stylesheets/movies.css'>-->
+        <link rel='stylesheet' href='/stylesheets/movies.css'>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -84,14 +84,19 @@
                 <%= title %>
             </div>
 
-            <div class="form-group">
-                <select class="form-control" name="state" id="rowsID" style="width:150px">
+            <div class="form-group div-row">
+                <select class="form-control" name="state" id="rowsID">
                     <option value="10" selected>10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
                     <option value="100000">Show All</option>
                 </select>
+            </div>
+
+            <div class="form-group div-search">
+                <input type="text" class="search form-control" placeholder="Search here..." id="search">
+                <span class="counter"></span>
             </div>
 
             <table class="table table-striped table-bordered table-hover" id="tableID">
@@ -105,7 +110,7 @@
 
                 <tbody>
                     <% for (var i = 0; i < data.length; i++) { %>
-                    <%     var url = "/movies/" + data[i].movie_url %>
+                    <%     var url = "/movies/" + data[i].movie_uri %>
                     <tr>
                         <td><a href="<%= url %>"><%= data[i].title %></a></td>
                         <td><%= data[i].genre %></td>

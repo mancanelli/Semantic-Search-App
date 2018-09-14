@@ -6,13 +6,13 @@ var queryString = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
                     "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
                     "PREFIX ont: <http://www.semanticweb.org/matteo/ontologies/project#> " +
-                    "SELECT ?uri ?title ?artist ?year " +
+                    "SELECT ?uri ?title ?author ?year " +
                     "WHERE { " +
                     "	?uri rdf:type ont:Book . " +
-                    "	?uri ont:album_title ?title . " +
-                    "	?uri ont:recordedBy ?arturi . " +
-                    "	?arturi ont:person_name ?artist . " +
-                    "   ?uri ont:album_year ?year . " +
+                    "	?uri ont:book_title ?title . " +
+                    "	?uri ont:writtenBy ?aut . " +
+                    "	?aut ont:person_name ?author . " +
+                    "   ?uri ont:book_year ?year . " +
                     "} ";
 
 var myquery = require('../public/javascripts/query');
@@ -27,10 +27,10 @@ router.get('/*', function(req, res, next) {
     var data = {};
 
     for (var i = 0; i < queryResults.length; i++)
-        if (book === queryResults[i].book_url)
+        if (book === queryResults[i].book_uri)
             data = queryResults[i];
 
-    res.render('info', {title: 'Books', data: data});
+    res.render('info', {data: data});
 });
 
 module.exports = router;

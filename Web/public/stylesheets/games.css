@@ -25,12 +25,16 @@ th{
     font-family: ;
 }
 
-.form-group{
-    margin: 20px auto auto auto;
+.div-row{
+    margin: 20px auto 10px auto;
+    width: 150px;
+    float: left;
 }
 
-.table{
-    margin: 10px auto auto auto;
+.div-search{
+    margin: 20px auto 10px auto;
+    float: right;
+    width: 250px;
 }
 
 .pagination-container{

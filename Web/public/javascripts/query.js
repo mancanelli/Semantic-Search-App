@@ -19,12 +19,33 @@ function myquery(media, queryString) {
     store.query(query, function(result) {
         var res = {};
 
-        if(media === "/album_triples.owl") {
+        if(media === "/small_album_triples.owl") {
             res  = {type: "music",
                     title: result["?title"].value,
                     artist: result["?artist"].value,
                     year: result["?year"].value,
-                    album_url: result["?myalbum"].value.split("#")[1]};
+                    album_uri: result["?uri"].value.split("#")[1]};
+        }
+        else if(media === "/book_triples.owl") {
+            res  = {type: "book",
+                    title: result["?title"].value,
+                    author: result["?author"].value,
+                    year: result["?year"].value,
+                    book_uri: result["?uri"].value.split("#")[1]};
+        }
+        else if(media === "/game_triples.owl") {
+            res  = {type: "game",
+                    title: result["?title"].value,
+                    publisher: result["?publisher"].value,
+                    year: result["?year"].value,
+                    game_uri: result["?uri"].value.split("#")[1]};
+        }
+        else if(media === "/small_movie_triples.owl") {
+            res  = {type: "movie",
+                    title: result["?title"].value,
+                    genre: result["?genre"].value,
+                    year: result["?year"].value,
+                    movie_uri: result["?uri"].value.split("#")[1]};
         }
 
         results.push(res);
@@ -34,15 +55,3 @@ function myquery(media, queryString) {
 }
 
 module.exports = myquery;
-
-/*
-//rating: result["?rating"].value,
-//genre: result["?genre"].value,
-//label: result["?label"].value,
-
-var stms = store.statementsMatching(undefined, undefined , undefined);
-for (var i = 0; i < stms.length; i++) {
-    var stm = stms[i];
-    console.log(stm);
-}
-*/

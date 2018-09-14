@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-var media = "/book_triples.owl"; // DA MODIFICARE
+var media = "/small_movie_triples.owl";
 var queryString = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
                     "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
                     "PREFIX ont: <http://www.semanticweb.org/matteo/ontologies/project#> " +
-                    "SELECT ?myalbum ?title ?artist ?year " +
+                    "SELECT ?uri ?title ?genre ?year " +
                     "WHERE { " +
-                    "	?myalbum rdf:type ont:Album . " +
-                    "	?myalbum ont:album_title ?title . " +
-                    "	?myalbum ont:recordedBy ?arturl . " +
-                    "	?arturl ont:person_name ?artist . " +
-                    "   ?myalbum ont:album_year ?year . " +
+                    "	?uri rdf:type ont:Movie . " +
+                    "	?uri ont:movie_title ?title . " +
+                    "	?uri ont:movie_genre ?genre . " +
+                    "   ?uri ont:movie_date ?year . " +
                     "} ";
 
 var myquery = require('../public/javascripts/query');
@@ -27,10 +26,10 @@ router.get('/*', function(req, res, next) {
     var data = {};
 
     for (var i = 0; i < queryResults.length; i++)
-        if (movie === queryResults[i].movie_url)
+        if (movie === queryResults[i].movie_uri)
             data = queryResults[i];
 
-    res.render('info', {title: 'Movies', data: data});
+    res.render('info', {data: data});
 });
 
 module.exports = router;

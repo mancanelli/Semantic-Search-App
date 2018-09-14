@@ -6,25 +6,13 @@ var queryString = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " +
                     "PREFIX owl: <http://www.w3.org/2002/07/owl#> " +
                     "PREFIX ont: <http://www.semanticweb.org/matteo/ontologies/project#> " +
-//                  "SELECT ?myalbum ?title ?artist ?year ?rating ?reviewurl ?review ?genre ?reviewer ?label " +
-                    "SELECT ?myalbum ?title ?artist ?year " +
+                    "SELECT ?uri ?title ?publisher ?year " +
                     "WHERE { " +
-                    "	?myalbum rdf:type ont:Album . " +
-                    "	?myalbum ont:album_title ?title . " +
-                    "	?myalbum ont:recordedBy ?arturl . " +
-                    "	?arturl ont:person_name ?artist . " +
-                    "   ?myalbum ont:album_year ?year . " +
-/*
-                    "   ?myalbum ont:album_rating ?rating . " +
-                    "   ?myalbum ont:review_url ?reviewurl . " +
-                    "   ?myalbum ont:review_date ?reviewdate . " +
-                    "   ?myalbum ont:album_review ?review . " +
-                    "	?myalbum ont:album_genre ?genre . " +
-                    "	?myalbum ont:reviewedBy ?reviewerurl . " +
-                    "	?reviewerurl ont:person_name ?reviewer . " +
-                    "	?myalbum ont:labeledBy ?labelurl . " +
-                    "	?labelurl ont:org_name ?label . " +
-*/
+                    "	?uri rdf:type ont:Game . " +
+                    "	?uri ont:game_name ?title . " +
+                    "	?uri ont:publishedBy ?puburl . " +
+                    "	?puburl ont:org_name ?publisher . " +
+                    "   ?uri ont:game_year ?year . " +
                     "} ";
 
 var myquery = require('../public/javascripts/query');
@@ -39,10 +27,10 @@ router.get('/*', function(req, res, next) {
     var data = {};
 
     for (var i = 0; i < queryResults.length; i++)
-        if (game === queryResults[i].game_url)
+        if (game === queryResults[i].game_uri)
             data = queryResults[i];
 
-    res.render('info', {title: 'Games', data: data});
+    res.render('info', {data: data});
 });
 
 module.exports = router;
