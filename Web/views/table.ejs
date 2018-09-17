@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title><%= data[0].type %></title>
+        <% var type = data[0].type.toLowerCase() %>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel='stylesheet' href='/stylesheets/<%= type %>.css'>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://rawgit.com/unconditional/jquery-table2excel/master/src/jquery.table2excel.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                var table = "#tableID";
+
+                $('#rowsID').change(function() {
+                    pagination();
+                });
+
+                $('.search').keyup(function() {
+                    var searchTerm = $(this).val();
+                    var count = 0;
+
+                    $(table + ' tr:gt(0)').each(function() {
+                        var found = 'false';
+
+                        $(this).each(function() {
+                            if($(this).text().toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0)
+                                found = 'true';
+                        });
+
+                        if(found == 'true') {
+                            count++;
+                            $(this).attr('visible', 'true')
+                        }
+                        else {
+                            $(this).attr('visible', 'false')
+                        }
+                    });
+
+                    if(count == 1)
+                        $('.counter').text(count + " result");
+                    else
+                        $('.counter').text(count + " results");
+
+                    pagination();
+                });
+
+                $(function() {
+                    $("#rowsID").trigger("change");
+
+                    $('table tr:eq(0)').prepend('<th>ID</th>');
+                    var id = 0;
+
+                    $('table tr:gt(0)').each(function() {
+                        id++;
+                        $(this).prepend('<td id="id">' + id + '</td>');
+                    });
+
+                    $('.btn').click(function() {
+                        $(table).table2excel({
+                            name: "My Data",
+                            filename: "mydata"
+                        });
+                    });
+                });
+
+                function pagination() {
+                    var num = 0;
+                    var maxRows = parseInt($('#rowsID').val());
+                    var totalRows = $(table + ' tbody tr[visible="true"]').length;
+                    $('.pagination').html('');
+
+                    $(table + ' tr:gt(0)').each(function() {
+                        if($(this).attr('visible') == 'true') {
+                            num++;
+
+                            if(num > maxRows)
+                                $(this).hide();
+                            else
+                                $(this).show();
+                        }
+                        else {
+                            $(this).hide();
+                        }
+                    });
+
+                    if(totalRows > maxRows) {
+                        var pagenum = Math.ceil(totalRows/maxRows);
+                        for(var i = 1; i <= pagenum; i++)
+                            $('.pagination').append('<li class="page-item" data-page="' + i + '"><a class="page-link" href="#">' + i + '</a></li>').show();
+                    }
+
+                    $('.pagination li:first-child').addClass('active');
+
+                    $('.pagination li').click(function() {
+                        var pageNum = parseInt($(this).attr('data-page'));
+                        var index = 0;
+
+                        $('.pagination li').removeClass('active');
+                        $(this).addClass('active');
+
+                        $(table + ' tr:gt(0)').each(function() {
+                            if($(this).attr('visible') == 'true') {
+                                index++;
+                                if(index > (maxRows*pageNum) || index <= ((maxRows*pageNum)-maxRows))
+                                    $(this).hide();
+                                else
+                                    $(this).show();
+                            }
+                            else {
+                                $(this).hide();
+                            }
+                        });
+                    });
+                }
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <br>
+
+        <div class="container">
+            <div class="title">
+                <%= data[0].type %>
+            </div>
+
+            <div class="form-group div-row">
+                <select class="form-control" name="state" id="rowsID">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="100000">Show All</option>
+                </select>
+            </div>
+
+            <div class="form-group div-search">
+                <input type="text" class="search form-control" placeholder="Search here...">
+                <span class="counter"><%= data.length %> results</span>
+            </div>
+
+            <table class="table table-bordered table-hover" id="tableID">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <% if(type == "music")  { %>  <th>Artist</th>     <% } %>
+                        <% if(type == "books")  { %>  <th>Author</th>     <% } %>
+                        <% if(type == "games")  { %>  <th>Publisher</th>  <% } %>
+                        <% if(type == "movies") { %>  <th>Genre</th>      <% } %>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% for (var i = 0; i < data.length; i++) { %>
+                        <% var url = "/" + type + "/" + data[i].uri %>
+                        <tr visible="true">
+                            <td><a href="<%= url %>"><%= data[i].title %></a></td>
+                            <% if(type == "music")  { %>  <td><%= data[i].artist %></td>     <% } %>
+                            <% if(type == "books")  { %>  <td><%= data[i].author %></td>     <% } %>
+                            <% if(type == "games")  { %>  <td><%= data[i].publisher %></td>  <% } %>
+                            <% if(type == "movies") { %>  <td><%= data[i].genre %></td>      <% } %>
+                            <td><%= data[i].year %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <div class="pagination-container">
+                <nav class="table-responsive mb-2">
+                    <ul class="pagination mb-1"></ul>
+                </nav>
+            </div>
+
+            <button class="btn btn-success">Export to Excel</button>
+        </div>
+
+    </body>
+
+</html>

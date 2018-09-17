@@ -41,11 +41,8 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com,
      - MyQuery.java
    * main
      - Main.java
-2. Risultati (da generare)
+2. Risultati
    * album_rec.owl
-   * book_rec.owl
-   * game_rec.owl
-   * movie_rec.owl
 
 ### Web
 
@@ -62,10 +59,7 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com,
    * views
      - index.ejs
      - error.ejs
-     - music.ejs
-     - books.ejs
-     - games.ejs
-     - movies.ejs
+     - table.ejs
      - info.ejs
    * public/stylesheets
      - index.css
@@ -73,7 +67,6 @@ Sono state utilizzate risorse in formato csv ottenute da https://www.kaggle.com,
      - books.css
      - games.css
      - movies.css
-     - info.css
 
 ### Esecuzione
 

@@ -20,32 +20,32 @@ function myquery(media, queryString) {
         var res = {};
 
         if(media === "/small_album_triples.owl") {
-            res  = {type: "music",
+            res  = {type: "Music",
                     title: result["?title"].value,
                     artist: result["?artist"].value,
                     year: result["?year"].value,
-                    album_uri: result["?uri"].value.split("#")[1]};
+                    uri: result["?uri"].value.split("#")[1]};
         }
         else if(media === "/book_triples.owl") {
-            res  = {type: "book",
+            res  = {type: "Books",
                     title: result["?title"].value,
                     author: result["?author"].value,
                     year: result["?year"].value,
-                    book_uri: result["?uri"].value.split("#")[1]};
+                    uri: result["?uri"].value.split("#")[1]};
         }
         else if(media === "/game_triples.owl") {
-            res  = {type: "game",
+            res  = {type: "Games",
                     title: result["?title"].value,
                     publisher: result["?publisher"].value,
                     year: result["?year"].value,
-                    game_uri: result["?uri"].value.split("#")[1]};
+                    uri: result["?uri"].value.split("#")[1]};
         }
         else if(media === "/small_movie_triples.owl") {
-            res  = {type: "movie",
+            res  = {type: "Movies",
                     title: result["?title"].value,
                     genre: result["?genre"].value,
                     year: result["?year"].value,
-                    movie_uri: result["?uri"].value.split("#")[1]};
+                    uri: result["?uri"].value.split("#")[1]};
         }
 
         results.push(res);

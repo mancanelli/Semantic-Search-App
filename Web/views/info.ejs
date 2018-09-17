@@ -8,36 +8,37 @@
     </head>
     <body>
         <div class="container">
-            <% if(data.type === "music") { %>
+            <% if(data.type === "Music") { %>
                 <h1><%= data.title %></h1>
                 <br>
-                <span id="artist">Artists: <%= data.artist %></span>
+                <span><%= data.artist %></span>
                 <br>
-                <span id="year">Year: <%= data.year %></span>
+                <span><%= data.year %></span>
+                <br>
             <% } %>
 
-            <% if(data.type === "book") { %>
+            <% if(data.type === "Books") { %>
                 <h1><%= data.title %></h1>
                 <br>
-                <span id="author"><%= data.author %></span>
+                <span><%= data.author %></span>
                 <br>
-                <span id="year"><%= data.year %></span>
+                <span><%= data.year %></span>
             <% } %>
 
-            <% if(data.type === "movie") { %>
+            <% if(data.type === "Movies") { %>
                 <h1><%= data.title %></h1>
                 <br>
-                <span id="genre"><%= data.genre %></span>
+                <span><%= data.genre %></span>
                 <br>
-                <span id="year"><%= data.year %></span>
+                <span><%= data.year %></span>
             <% } %>
 
-            <% if(data.type === "game") { %>
+            <% if(data.type === "Games") { %>
                 <h1><%= data.title %></h1>
                 <br>
-                <span id="publisher"><%= data.publisher %></span>
+                <span><%= data.publisher %></span>
                 <br>
-                <span id="year"><%= data.year %></span>
+                <span><%= data.year %></span>
             <% } %>
         </div>
     </body>

@@ -52,7 +52,7 @@ public class Main {
 		try {
 			//OntModel model = ModelFactory.createOntologyModel();
 			OntModel model = ModelFactory.createOntologyModel();
-			model.read("../Ontology/album_triples.owl", "RDF/XML");
+			model.read("../Ontology/small_album_triples.owl", "RDF/XML");
 
 			Property correlated = model.getProperty(ontURI, prop);
 
@@ -75,7 +75,7 @@ public class Main {
 				System.out.println(i++);
 			}
 
-			model.write(new PrintWriter("album_correlation.owl", "UTF-8"), "RDF/XML");
+			model.write(new PrintWriter("album_recom.owl", "UTF-8"), "RDF/XML");
 		}
 		catch (Exception e) {
 			System.out.println("Something went wrong: " + e);
