@@ -11,10 +11,10 @@ if __name__ == "__main__":
 
     ontURI = "http://www.semanticweb.org/matteo/ontologies/project"
 
-    addBookTriples(graph, ontURI)
     addAlbumTriples(graph, ontURI)
-    addMovieTriples(graph, ontURI)
     addGameTriples(graph, ontURI)
+    addBookTriples(graph, ontURI)
+    addMovieTriples(graph, ontURI)
 
     file = open("triples.owl", "wb")
     file.write(graph.serialize(format='xml'))

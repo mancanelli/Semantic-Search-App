@@ -50,20 +50,19 @@ public class Main {
 							 "} ";
 
 		try {
-			//OntModel model = ModelFactory.createOntologyModel();
 			OntModel model = ModelFactory.createOntologyModel();
-			model.read("../Ontology/small_album_triples.owl", "RDF/XML");
+			model.read("../Ontology/album_triples.owl", "RDF/XML");
 
 			Property correlated = model.getProperty(ontURI, prop);
 
 			ArrayList<Object> items = MyQuery.queryExec(model, queryString);
 			ArrayList<Object> recommended = new ArrayList<Object>();
-			Recommender recom = new Recommender(items);
+			Recommender recommender = new Recommender(items);
 
 			int i = 0;
 
 			for(Object item : items) {
-				recommended = recom.recommendation(item);
+				recommended = recommender.recommendation(item);
 
 				for(Object obj : recommended) {
 					Resource firstResource = model.getResource(((Album) item).getUri());

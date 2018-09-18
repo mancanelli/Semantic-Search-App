@@ -40,7 +40,7 @@ def addMovieTriples(graph, ontURI):
 
             # Year
             if row[8]:
-                graph.add((URIRef(ontURI + title), URIRef(ontURI + "#movie_date"), Literal(row[8])))
+                graph.add((URIRef(ontURI + title), URIRef(ontURI + "#movie_date"), Literal(str(row[8]).split("-")[0])))
 
             # Revenue
             if row[9]:

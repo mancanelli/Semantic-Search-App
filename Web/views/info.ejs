@@ -7,39 +7,28 @@
         <link rel='stylesheet' href='/stylesheets/info.css'>
     </head>
     <body>
-        <div class="container">
+        <div>
+            <h1><%= data.title %></h1>
+            <br>
+
             <% if(data.type === "Music") { %>
-                <h1><%= data.title %></h1>
-                <br>
                 <span><%= data.artist %></span>
-                <br>
-                <span><%= data.year %></span>
-                <br>
             <% } %>
 
             <% if(data.type === "Books") { %>
-                <h1><%= data.title %></h1>
-                <br>
                 <span><%= data.author %></span>
-                <br>
-                <span><%= data.year %></span>
             <% } %>
 
             <% if(data.type === "Movies") { %>
-                <h1><%= data.title %></h1>
-                <br>
                 <span><%= data.genre %></span>
-                <br>
-                <span><%= data.year %></span>
             <% } %>
 
             <% if(data.type === "Games") { %>
-                <h1><%= data.title %></h1>
-                <br>
                 <span><%= data.publisher %></span>
-                <br>
-                <span><%= data.year %></span>
             <% } %>
+
+            <br>
+            <span><%= data.year %></span>
         </div>
     </body>
 </html>

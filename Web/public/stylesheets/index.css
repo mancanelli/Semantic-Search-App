@@ -1,9 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
-html, body{
+html{
     height: 100%;
 }
 
@@ -11,12 +6,10 @@ body{
     background-image: url(../images/40610049_1370561219714121_4786766928569958400_n.png);
     background-position: center;
     background-size: cover;
-    background-blend-mode: soft-light;
 }
 
 a{
     color: inherit;
-    text-decoration: none;
 }
 
 .heading{
@@ -35,99 +28,62 @@ a{
     text-align: center;
     color: white;
     font-size: 50pt;
-    font-family: ;
 }
 
 .buttons{
     margin: 35px;
-    width: auto;
     text-align: center;
 }
 
-.movie{
+.music, .book, .game, .movie{
     margin: 10px;
     width: 180px;
     height: 50px;
-    border: 3px solid #66ff99;
     background-color: rgba(255,255,255,0);
-    color: #66ff99;
     font-family: sans-serif;
     font-weight: bold;
     border-radius: 5px;
-
     transition: background-color 500ms, color 500ms;
+}
+
+.movie{
+    border: 3px solid #66ff99;
+    color: #66ff99;
 }
 
 .music{
-    margin: 10px;
-    width: 180px;
-    height: 50px;
     border: 3px solid #80d4ff;
-    background-color: rgba(255,255,255,0);
     color: #80d4ff;
-    font-family: sans-serif;
-    font-weight: bold;
-    border-radius: 5px;
-
-    transition: background-color 500ms, color 500ms;
 }
 
 .book{
-    margin: 10px;
-    width: 180px;
-    height: 50px;
     border: 3px solid #ffff99;
-    background-color: rgba(255,255,255,0);
     color: #ffff99;
-    font-family: sans-serif;
-    font-weight: bold;
-    border-radius: 5px;
-
-    transition: background-color 500ms, color 500ms;
 }
 
 .game{
-    margin: 10px;
-    width: 180px;
-    height: 50px;
     border: 3px solid #ff9980;
-    background-color: rgba(255,255,255,0);
     color: #ff9980;
-    font-family: sans-serif;
-    font-weight: bold;
-    border-radius: 5px;
+}
 
+.music:hover, .book:hover, .game:hover, .movie:hover{
+    color: #222222;
+    cursor: pointer;
     transition: background-color 500ms, color 500ms;
 }
 
 .book:hover{
     background-color: rgba(255, 255, 153, 1);
-    color: #222;
-    cursor: pointer;
-
-    transition: background-color 500ms, color 500ms;
 }
 
 .music:hover{
     background-color: rgba(128, 212, 255, 1);
-    color: #222;
-    cursor: pointer;
-
-    transition: background-color 500ms, color 500ms;
 }
 
 .movie:hover{
     background-color: rgba(102, 255, 153, 1);
-    color: #222;
-    cursor: pointer;
-
-    transition: background-color 500ms, color 500ms;
 }
 
 .game:hover{
     background-color: rgba(255, 153, 128, 1);
-    color: #222;
-    cursor: pointer;
-
-    transition: background-color 500ms, color 500ms;
 }

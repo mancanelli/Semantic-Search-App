@@ -2,7 +2,7 @@ import rdflib
 
 
 g = rdflib.Graph()
-g.parse("book_triples.owl", format="xml")
+g.parse("populated.owl", format="xml")
 
 
 book_query = g.query(

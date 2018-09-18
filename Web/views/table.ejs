@@ -14,8 +14,6 @@
 
         <script>
             $(document).ready(function() {
-                var table = "#tableID";
-
                 $('#rowsID').change(function() {
                     pagination();
                 });
@@ -24,7 +22,7 @@
                     var searchTerm = $(this).val();
                     var count = 0;
 
-                    $(table + ' tr:gt(0)').each(function() {
+                    $('tbody tr').each(function() {
                         var found = 'false';
 
                         $(this).each(function() {
@@ -36,9 +34,8 @@
                             count++;
                             $(this).attr('visible', 'true')
                         }
-                        else {
+                        else
                             $(this).attr('visible', 'false')
-                        }
                     });
 
                     if(count == 1)
@@ -52,16 +49,16 @@
                 $(function() {
                     $("#rowsID").trigger("change");
 
-                    $('table tr:eq(0)').prepend('<th>ID</th>');
+                    $('thead tr').prepend('<th>ID</th>');
                     var id = 0;
 
-                    $('table tr:gt(0)').each(function() {
+                    $('tbody tr').each(function() {
                         id++;
-                        $(this).prepend('<td id="id">' + id + '</td>');
+                        $(this).prepend('<td>' + id + '</td>');
                     });
 
-                    $('.btn').click(function() {
-                        $(table).table2excel({
+                    $('.excel').click(function() {
+                        $(".table").table2excel({
                             name: "My Data",
                             filename: "mydata"
                         });
@@ -69,55 +66,53 @@
                 });
 
                 function pagination() {
-                    var num = 0;
+                    var index = 0;
                     var maxRows = parseInt($('#rowsID').val());
-                    var totalRows = $(table + ' tbody tr[visible="true"]').length;
+                    var totalRows = $('table tbody tr[visible="true"]').length;
                     $('.pagination').html('');
 
-                    $(table + ' tr:gt(0)').each(function() {
+                    $('tbody tr').each(function() {
                         if($(this).attr('visible') == 'true') {
-                            num++;
+                            index++;
 
-                            if(num > maxRows)
+                            if(index > maxRows)
                                 $(this).hide();
                             else
                                 $(this).show();
                         }
-                        else {
+                        else
                             $(this).hide();
-                        }
                     });
 
                     if(totalRows > maxRows) {
-                        var pagenum = Math.ceil(totalRows/maxRows);
-                        for(var i = 1; i <= pagenum; i++)
+                        var n = Math.ceil(totalRows/maxRows);
+                        for(var i = 1; i <= n; i++)
                             $('.pagination').append('<li class="page-item" data-page="' + i + '"><a class="page-link" href="#">' + i + '</a></li>').show();
                     }
 
                     $('.pagination li:first-child').addClass('active');
 
                     $('.pagination li').click(function() {
-                        var pageNum = parseInt($(this).attr('data-page'));
-                        var index = 0;
+                        var page = parseInt($(this).attr('data-page'));
+                        index = 0;
 
                         $('.pagination li').removeClass('active');
                         $(this).addClass('active');
 
-                        $(table + ' tr:gt(0)').each(function() {
+                        $('tbody tr').each(function() {
                             if($(this).attr('visible') == 'true') {
                                 index++;
-                                if(index > (maxRows*pageNum) || index <= ((maxRows*pageNum)-maxRows))
+
+                                if(index > (maxRows*page) || index <= ((maxRows*page)-maxRows))
                                     $(this).hide();
                                 else
                                     $(this).show();
                             }
-                            else {
+                            else
                                 $(this).hide();
-                            }
                         });
                     });
                 }
-
             });
         </script>
     </head>
@@ -136,7 +131,7 @@
                     <option value="25">25</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
-                    <option value="100000">Show All</option>
+                    <option value="10000">Show All</option>
                 </select>
             </div>
 
@@ -145,7 +140,7 @@
                 <span class="counter"><%= data.length %> results</span>
             </div>
 
-            <table class="table table-bordered table-hover" id="tableID">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -178,7 +173,8 @@
                 </nav>
             </div>
 
-            <button class="btn btn-success">Export to Excel</button>
+            <button class="btn excel">Export to Excel</button>
+            <a href="/"><button class="btn home">Home</button></a>
         </div>
 
     </body>

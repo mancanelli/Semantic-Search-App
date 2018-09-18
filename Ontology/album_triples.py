@@ -9,6 +9,7 @@ def addAlbumTriples(graph, ontURI):
         csv_reader = csv.reader(csvfile, delimiter=',')
 
         for row in csv_reader:
+
             # Album
             if row[8]:
                 title = formatURI(str(row[0])) + "_" + str(row[8])

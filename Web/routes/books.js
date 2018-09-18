@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var media = "/book_triples.owl";
+var file = "/book_triples.owl";
 var queryString = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "PREFIX ont: <http://www.semanticweb.org/matteo/ontologies/project#> " +
                     "SELECT ?uri ?title ?author ?year " +
@@ -14,11 +14,13 @@ var queryString = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
                     "} ";
 
 var myquery = require('../public/javascripts/query');
-var queryResults = myquery(media, queryString);
+var queryResults = myquery(file, queryString);
+
 
 router.get('/', function(req, res, next) {
     res.render('table', {data: queryResults});
 });
+
 
 router.get('/*', function(req, res, next) {
     var book = req.url.substring(1, req.url.length);
