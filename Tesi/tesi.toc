@@ -9,14 +9,13 @@
 \contentsline {section}{\numberline {2.3}Modello Relazionale e Modello E-R}{7}
 \contentsline {chapter}{\numberline {3}Vector Space Model}{9}
 \contentsline {section}{\numberline {3.1}Sistemi di Raccomandazione}{9}
-\contentsline {section}{\numberline {3.2}TFIDF e Cosine Similarity}{11}
-\contentsline {chapter}{\numberline {4}Data Analysis e UI}{13}
-\contentsline {chapter}{\numberline {5}Metodologia}{15}
-\contentsline {chapter}{\numberline {6}Implementazione}{17}
-\contentsline {section}{\numberline {6.1}Kaggle e ER}{17}
-\contentsline {section}{\numberline {6.2}Protege e Python}{17}
-\contentsline {section}{\numberline {6.3}Java con query e correlazione}{17}
-\contentsline {section}{\numberline {6.4}Node.js con JQuery per paginazione e ricerca}{17}
-\contentsline {section}{\numberline {6.5}Prestazioni}{17}
-\contentsline {chapter}{\numberline {7}Conclusioni}{19}
-\contentsline {section}{\numberline {7.1}Risultati Ottenuti}{19}
+\contentsline {section}{\numberline {3.2}TF-IDF e Cosine Similarity}{11}
+\contentsline {chapter}{\numberline {4}Architettura}{13}
+\contentsline {chapter}{\numberline {5}Implementazione}{15}
+\contentsline {section}{\numberline {5.1}Kaggle e ER}{15}
+\contentsline {section}{\numberline {5.2}Protege e Python}{15}
+\contentsline {section}{\numberline {5.3}Java con query e correlazione}{15}
+\contentsline {section}{\numberline {5.4}Node.js con JQuery per paginazione e ricerca}{15}
+\contentsline {section}{\numberline {5.5}Prestazioni}{15}
+\contentsline {chapter}{\numberline {6}Conclusioni}{17}
+\contentsline {section}{\numberline {6.1}Risultati Ottenuti}{17}

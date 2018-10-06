@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1538787010 "tesi.tex" "tesi.pdf" "tesi" 1538787011
+["pdflatex"] 1538857527 "tesi.tex" "tesi.pdf" "tesi" 1538857528
   "/etc/texmf/web2c/texmf.cnf" 1518857352 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1480098696 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
@@ -123,12 +123,12 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1518857443 4131731 957d830c047d51c5b65448ebbacb7a29 ""
   "sapienza-MLred-pos.pdf" 1274826244 16467 d37335f7ce529baff3eb592202135649 ""
   "sapthesis.cls" 1533594916 38425 2b73c484095ceb92cab5d903448dce8d ""
-  "tesi.aux" 1538787011 2515 cb467600b5e9afccb0100cd0c3e4e88a ""
-  "tesi.tex" 1538787010 24704 873f7b8e1b76c36c4c7ff89eb11ba6c7 ""
-  "tesi.toc" 1538787011 1353 b0ab839264748d33170013f08b51c8c9 ""
+  "tesi.aux" 1538857528 2360 6c3870906cbcc9150186b9ee0344575e ""
+  "tesi.tex" 1538857527 28867 ed8dd2a6185b03ca4009d85408b8edc4 ""
+  "tesi.toc" 1538857528 1292 cde2fd06804335af57460c6c2d07a104 ""
   (generated)
-  "tesi.pdf"
-  "tesi.out"
-  "tesi.log"
   "tesi.aux"
+  "tesi.log"
+  "tesi.out"
   "tesi.toc"
+  "tesi.pdf"

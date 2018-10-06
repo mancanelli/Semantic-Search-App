@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.2.17)  6 OCT 2018 02:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.2.17)  6 OCT 2018 22:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1027,11 +1027,13 @@ Capitolo 2.
 Capitolo 3.
 [9
 
-] [10] [11] [12
+] [10] [11
 
-]
+] [12]
 Capitolo 4.
-[13] [14
+[13
+
+] [14
 
 ]
 Capitolo 5.
@@ -1041,11 +1043,7 @@ Capitolo 5.
 Capitolo 6.
 [17] [18
 
-]
-Capitolo 7.
-[19] [20
-
-] [21] [22
+] [19] [20
 
 ] (./tesi.aux) ) 
 Here is how much of TeX's memory you used:
@@ -1055,7 +1053,7 @@ Here is how much of TeX's memory you used:
  11256 multiletter control sequences out of 15000+600000
  74333 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,11n,94p,940b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,94p,940b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/
 texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
 mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fon
@@ -1070,10 +1068,10 @@ e1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on tesi.pdf (28 pages, 256499 bytes).
+Output written on tesi.pdf (26 pages, 262323 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
- 121 compressed objects within 2 object streams
+ 164 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  20486 words of extra memory for PDF output out of 20736 (max. 10000000)
 
