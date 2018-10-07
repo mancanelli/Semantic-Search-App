@@ -184,7 +184,16 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT pila.png
+INPUT ./pila.png
+INPUT ./pila.png
+INPUT rdf.jpg
+INPUT ./rdf.jpg
+INPUT ./rdf.jpg
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr10.tfm
+INPUT vsm.jpg
+INPUT ./vsm.jpg
+INPUT ./vsm.jpg
 INPUT tesi.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc

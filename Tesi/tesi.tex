@@ -1,4 +1,4 @@
-\documentclass[Lau,binding=0.6cm,noexaminfo]{sapthesis}
+\documentclass[Lau,binding=0.6cm,noexaminfo,oneside]{sapthesis}
 
 \usepackage{microtype}
 \usepackage[italian]{babel}
@@ -18,6 +18,7 @@
 \advisor{Prof. Riccardo Rosati}
 \authoremail{mancanelli.1711823@studenti.uniroma1.it}
 
+\usepackage{graphicx}
 \newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
 
 \begin{document}
@@ -47,8 +48,8 @@ Si intende perciò superare l'idea del Web come semplice archivio di documenti, 
 Molti dei problemi presentati sono dovuti al fatto che i dati sono pensati per essere utilizzati e fruiti direttamente dall'uomo, mentre un elaboratore non è in grado di conoscerne realmente il contenuto informativo. In questa ottica, il termine semantico assume sostanzialmente la valenza di elaborabile dalla macchina (machine understandable).
 Fornire significato ai dati vuol dire quindi associare delle informazioni utili perché una macchina possa manipolarli in base alla loro interpretazione.\medskip
 
-Per quanto detto, una delle caratteristiche imprescindibili del Web semantico è l'accesso ad un insieme strutturato di informazioni e a un insieme di regole di inferenza da utilizzare per eseguire procedure di ragionamento automatico.
-\MakeUppercase{è} soprattutto quest'ultimo aspetto che rende la nuova ricerca sulla rete tanto vicina al più generale ambito della rappresentazione della conoscenza.\medskip
+Per quanto detto, una delle caratteristiche imprescindibili del Web semantico è l'accesso ad un insieme formale e strutturato di informazioni e a un insieme di regole di inferenza da utilizzare per eseguire procedure di ragionamento automatico.
+Sono questi gli aspetti che legano indissolubilmente la nuova ricerca sulla rete al più generale ambito della rappresentazione della conoscenza.\medskip
 
 Il primo strumento utilizzato per realizzare il fine prefissato è quello di strutturare e corredare i documenti di metadati. Questi riflettono parte di quello che c'è da sapere su un certo insieme di dati e ciò che da tale conoscenza è possibile ricavare.
 Per esprimere i metadati si utilizzano i linguaggi di annotazione (o markup language) costruiti sulla base del tradizionale XML (eXtensible Markup Language). Le annotazioni sono quindi lo strumento elaborato per rappresentare il significato dei dati annotati.\medskip
@@ -62,10 +63,10 @@ Il fine è quello di fornire rigore formale e associare procedure automatiche di
 \MakeUppercase{è} evidente come l'uso di una ontologia rispecchia la necessità esplicitata di conoscere la semantica dell'informazione trattata ed eseguire inferenze per far emergere nuova conoscenza precedentemente celata.
 L'attività di inferenza permette così di estendere l'insieme degli assiomi asseriti in un determinato contesto, ma anche di verificarne la consistenza interna nel processo denominato validazione. Un ragionatore automatico (o reasoner) è un software in grado di svolgere tale attività su delle basi di conoscenza, anche per mezzo della logica dei predicati del primo ordine.\medskip
 
-Per perseguire l'obiettivo di garantire ai dati un ruolo di primo piano nel nuovo paradigma, si introducono infine i concetti di vocabolari e Linked Data. Un vocabolario è una struttura condivisa per la rappresentazione delle informazioni che afferiscono ad uno stesso dominio.
+Per perseguire l'obiettivo di garantire ai dati un ruolo di primo piano nel nuovo paradigma, si introducono infine i concetti di vocabolario e Linked Data. Un vocabolario è una struttura condivisa per la rappresentazione delle informazioni che afferiscono ad uno stesso dominio.
 La possibilità di organizzare la conoscenza integrando i dati provenienti da diversi vocabolari ed eliminando le ambiguità con l'aiuto dei reasoner permette uno sviluppo indipendente e distribuito dei diversi domini, piuttosto che la creazione di un unica struttura poco modulare e complessa da processare.\medskip
 
-Accanto all'uso di vocabolari e ontologie è necessario avere delle norme per rendere disponibili grandi quantità di dati e per far sì che possano essere trattati correttamente. Si parla quindi di Linked Data per riferirsi alle modalità di pubblicazione dei dati strutturati, utili per la successiva integrazione con altri dati preesistenti, l'inferenza e l'interrogazione semantica.
+Accanto all'uso di vocabolari e ontologie è necessario avere delle norme per rendere disponibili grandi quantità di dati e per far sì che possano essere trattati correttamente. Si parla quindi di Linked Data per riferirsi alle modalità di pubblicazione dei dati strutturati, utili per la successiva integrazione con altre informazioni preesistenti e l'interrogazione semantica.
 I dataset più celebri sono quelli che compongono il progetto Linked Open Data (LOD), l'esempio meglio rappresentativo dell'utilizzo dei nuovi strumenti per la gestione dei dati annotati e per la definizione semantica degli stessi.\medskip
 
 \clearpage
@@ -73,6 +74,12 @@ I dataset più celebri sono quelli che compongono il progetto Linked Open Data (
 \section{RDF, OWL e SPARQL}
 
 Numerose sono le tecnologie nate per il conseguimento dei diversi aspetti che coinvolgono la realizzazione del Web semantico. Fra queste si possono identificare le più popolari ed utilizzate per la definizione dei metadati, per la creazione delle ontologie e per le interrogazioni: RDF (Resource Description Framework), OWL (Web Ontology Language) e SPARQL (acronimo ricorsivo di SPARQL Protocol and RDF Query Language).\medskip
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.45]{pila.png}
+  \caption{Struttura a strati del Web semantico}
+\end{figure}
 
 RDF è un semplice framework per la rappresentazione e lo scambio di metadati strutturati. Il modello concettuale che realizza RDF permette l'organizzazione delle informazioni in un insieme di triple, ognuna delle quali è composta da un soggeto, un predicato ed un oggetto. Il soggetto, ovvero la risorsa, e il predicato delle triple sono necessariamente rappresentati da un URI (Uniform Resource Identifier), mentre l'oggetto può essere un tipo di dato primitivo. Con RDF si definisce quindi un insieme di relazioni binarie che intercorrono tra due dati, ma non si forniscono regole di definizione per queste relazioni.\medskip
 
@@ -105,7 +112,13 @@ Il modello relazionale si basa sul concetto matematico di relazione. Detti $D_1,
 Nel modello relazionale, la relazione è rappresentata in forma tabellare e ogni dominio è visto come un attributo a cui è associato un nome. La mancanza di una struttura posizionale rende l'ordinamento irrilevante, ma nello stesso tempo ogni tupla deve avere elementi di tipo omogeneo rispetto agli attributi definiti.\medskip
 
 Considerato l'esteso e trasversale uso dei modelli relazionali sono diversi i tentativi di modellazione di metadati nelle basi di dati relazionali. Esempi di tali integrazioni sono le strutture miste, in cui si associa ad ogni attributo $A$ un attributo $A_c$ per inserire le annotazioni dei valori, e le associazioni intensionali, in cui le annotazioni vengono registrate in una relazione indipendente e poi associate alle tuple corrispiondenti per mezzo della valutazione di una query.
-Per lo storage e l'analisi di dati RDF è possibile creare un semplice sistema in cui, fra il DBMS e l'interfaccia utente, si inserisce un livello in grado di tradurre le interrogazioni RDF perché il sistema relazionale sottostante possa soddisfarle. Un metodo semplice ed efficace, anche se poco efficiente, per mappare un dataset RDF in una base relazionale è quello di creare una relazione con tre attributi (soggetto, predicato ed oggetto) e costruire le tuple con le triple del dataset.\medskip
+Per lo storage e l'analisi di dati RDF è possibile creare un semplice sistema in cui, fra il DBMS e l'interfaccia utente, si inserisce un livello intermedio (middleware) in grado di tradurre le interrogazioni RDF perché il sistema relazionale sottostante possa soddisfarle. Un metodo semplice ed efficace, anche se poco efficiente, per mappare un dataset RDF in una base relazionale è quello di creare una relazione con tre attributi (soggetto, predicato ed oggetto) e costruire le tuple con le triple del dataset.\medskip
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.35]{rdf.jpg}
+  \caption{Sistema di storage dei dati RDF}
+\end{figure}
 
 Nel modello E-R la struttura dello schema concettuale è descritta in forma grafica e definisce il livello intensionale della base di dati. I costrutti fondamentali utilizzati per tracciare i diagrammi E-R sono le entità, le relazioni, i vincoli e gli attributi. Le entità rappresentano le classi degli oggetti di interesse mentre le relazioni sono associazioni che legano due o più entità. Una base di dati, così come una ontologia, è un metodo per rappresentare un insieme di informazioni: sembra quindi immediata, almeno dal punto di vista speculativo, la traduzione della struttura definita da uno schema E-R in un dominio ontologico che sia fedele alle regole imposte dal Web semantico. Questa operazione è in effetti possibile, sebbene esistano delle limitazioni e sia necessario tenere in considerazione le numerose differenze che intercorrono fra un diagramma e un linguaggio come OWL.\medskip
 
@@ -163,11 +176,11 @@ Come descritto in precedenza, uno dei metodi utilizzati per la realizzazione di 
 Ogni elemento $s \in S$ sarà descritto da un vettore del tipo $s_j = (w_{1j}, w_{2j}, ..., w_{nj})$. La dimensione dei vettori dipende dal numero di caratteristiche sulle quali si vuole basare il sistema, ad esempio un insieme di parole chiave nel caso in cui, come spesso accede, gli elementi rappresentano dei documenti testuali.\medskip
 
 Per quanto detto, è necessario stabilire il modo in cui calcolare le componenti $w_{ij}$ dei vettori. Il primo e più immediato procedimento consiste nell'assegnare solo coefficienti di tipo binario in base alla presenza di una determinata caratteristica nell'elemento analizzato. Un modello così semplice è però insufficiente per ottenere buoni risultati. Si estende perciò questo metodo contando il numero di occorrenze delle feature ricercate.
-\MakeUppercase{è} possibile per esempio contare le occorrenze dei termini rilevanti all'interno di un documento. Alcune parole molto frequenti possono però essere poco rilevanti e portare a classificazioni poco precise. Si ricorre quindi ad un modello più complesso, definito TF-IDF (term frequency - inverse document frequency). Il primo passo è calcolare la frequenza dei termini con elementi di normalizzazione. Detto $count(t,d)$ le occorrenze del termine $t$ nel documento $d \in D$, è possibile utilizzare una delle seguenti formule
+\MakeUppercase{è} possibile per esempio contare le occorrenze dei termini rilevanti all'interno di un documento. Alcune parole molto frequenti possono però essere poco rilevanti e portare a classificazioni poco precise. Si ricorre quindi ad un modello più complesso, definito TF-IDF (term frequency - inverse document frequency). Il primo passo è calcolare la frequenza dei termini con elementi di normalizzazione. Detto $count(t,d)$ il numero di occorrenze del termine $t$ nel documento $d \in D$, è possibile utilizzare una delle seguenti formule
 \begin{gather*}
-  tf(t,d) = \frac{count(t,d)}{|d|} \\
-  tf(t,d) = 1 + \log_{10}(count(t,d)) \\
-  tf(t,d) = k + (1-k) \frac{count(t,d)}{max\{count(t',d) : t' \in d\}}
+  t\!f(t,d) = \frac{count(t,d)}{|d|} \\
+  t\!f(t,d) = 1 + \log_{10}(count(t,d)) \\
+  t\!f(t,d) = k + (1-k) \frac{count(t,d)}{max\{count(t',d) : t' \in d\}}
 \end{gather*}
 A questa misura si aggiunge un termine correttivo, detto inverse document frequency, utile per tenere in considerazione la rilevanza di una parola rispetto alle sue occorrenze nella totalità dello spazio dei documenti. Questo valore sarà più grande se il termine appare più raramente
 \[
@@ -175,7 +188,7 @@ idf(t) = \log \frac{|D|}{|\{d \in D : t \in d\}|}
 \]
 Il calcolo della componente relativa a $t$ nel vettore sarà quindi dato dalla combinazione dei valori precedentemente calcolati, ovvero
 \[
-w_{ij} = tfidf_{i,j} = tf(i,j) \cdot idf(i)
+w_{ij} = t\!fidf_{i,j} = t\!f(i,j) \cdot idf(i)
 \]
 
 \medskip
@@ -184,6 +197,13 @@ Una volta trovati i vettori che rappresentano gli elementi del sistema, la racco
 \[
 \cos(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1|| \, ||s_2||} = \frac{s_1^T s_2}{||s_1|| \, ||s_2||} = \frac{\sum_{i} w_{i1} w_{i2}}{\sqrt{\sum_{i} w_{i1}^2} \sqrt{\sum_{i} w_{i2}^2}}
 \]
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.9]{vsm.jpg}
+  \caption{Distanza fra vettori}
+\end{figure}
+
 Il risultato ottenuto avrà sempre un valore compreso tra $0$ e $1$, se le componenti dei vettori impiegati sono numeri razionali non negativi. Un risultato pari ad uno corrisponde ad una maggiore somiglianza degli elementi considerati. Il coseno di similitudine non fa altro che normalizzare il prodotto scalare fra i vettori con la loro norma, in modo tale che documenti possano avere valori maggiori in base alla loro lunghezza. In sostituzione di questa tecnica, altre misure utilizzate sono il coefficiente di Dice
 \[
 sim(s_1, s_2) = 2 \, \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2} = 2 \, \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2}
@@ -192,9 +212,13 @@ e il coefficiente di Jaccard
 \[
 sim(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2 - s_1 \cdot s_2} = \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2 - \sum_{i} w_{i1} w_{i2}}
 \]
-%Il Vector Space Model ha il vantaggio di essere un metodo
+
+\medskip
+
+Nonostante il vasto impiego dei modelli probabilistici, il Vector Space Model mantiene un posto di rilievo ed interesse nello studio dei sistemi di raccomandazione. Diversi sono i tentativi di integrare questo metodo con l'approccio collaborativo e di estenderlo per il superamento di alcuni limiti, quali la necessaria indipendenza interna dei termini del documento analizzato, la perdita dell'ordinamento e la mancata considerazione del contesto semantico. Inoltre ha il vantaggio di essere un metodo di semplice implementazione, basato esclusivamente sull'algebra lineare ed efficace nel caso di insieme di dati poco complessi.
 
 \chapter{Architettura}
+\section{Protégé}
 
 \chapter{Implementazione}
 \section{Kaggle e ER}
@@ -216,7 +240,6 @@ sim(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2 - s_1 \cdot s_2} = \f
   \item Creazione Ontologia OWL (Protege)
   \item Description Logics
   \item Triple RDF da csv (Python e rdflib)
-  \item Vector Space Model
   \item Correlazione (Java e Jena)
   \item Query semantiche (da SQL a SPARQL)
   \item Rappresentazione Web (UI)
