@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.2.17)  7 OCT 2018 02:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.2.17)  8 OCT 2018 02:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -992,9 +992,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--27
 
 [1
 
-] [2
-
-
 ] (./tesi.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 4.
@@ -1006,7 +1003,8 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `tesi.toc'.
 
- [3
+ [2
+
 
 ]
 Capitolo 1.
@@ -1018,63 +1016,57 @@ Capitolo 2.
 [2
 
 ] [3]
-<pila.png, id=38, 406.51875pt x 406.51875pt>
+<pila.png, id=33, 406.51875pt x 406.51875pt>
 File: pila.png Graphic file (type png)
 <use pila.png>
-Package pdftex.def Info: pila.png  used on input line 80. on input line 80.
+Package pdftex.def Info: pila.png  used on input line 86. on input line 86.
 Package pdftex.def Info: Requested size: 182.93173pt x 182.93173pt on input lin
-e 80.
- [4
-
- <./pila.png>] [5]
-<rdf.jpg, id=47, 691.58376pt x 652.4375pt>
+e 86.
+ [4 <./pila.png>] [5]
+<rdf.jpg, id=43, 691.58376pt x 652.4375pt>
 File: rdf.jpg Graphic file (type jpg)
 <use rdf.jpg>
-Package pdftex.def Info: rdf.jpg  used on input line 119. on input line 119.
+Package pdftex.def Info: rdf.jpg  used on input line 126. on input line 126.
 Package pdftex.def Info: Requested size: 242.05794pt x 228.35654pt on input lin
-e 119.
- [6
-
-] [7 <./rdf.jpg>]
+e 126.
+ [6] [7 <./rdf.jpg>]
 Capitolo 3.
 [8
 
-] [9] [10
-
-]
-<vsm.jpg, id=73, 188.20313pt x 185.19188pt>
+] [9] [10]
+<vsm.jpg, id=69, 188.20313pt x 185.19188pt>
 File: vsm.jpg Graphic file (type jpg)
 <use vsm.jpg>
-Package pdftex.def Info: vsm.jpg  used on input line 203. on input line 203.
+Package pdftex.def Info: vsm.jpg  used on input line 208. on input line 208.
 Package pdftex.def Info: Requested size: 169.38123pt x 166.67113pt on input lin
-e 203.
+e 208.
  [11 <./vsm.jpg>]
 Capitolo 4.
 [12
 
-]
+] [13]
 Capitolo 5.
-[13
+[14
 
 ]
 Capitolo 6.
-[14
+[15
 
-] [15
+] [16
 
 ] (./tesi.aux) ) 
 Here is how much of TeX's memory you used:
- 7986 strings out of 492990
- 119220 string characters out of 6135005
+ 7998 strings out of 492990
+ 119380 string characters out of 6135005
  231204 words of memory out of 5000000
- 11272 multiletter control sequences out of 15000+600000
- 74416 words of font info for 102 fonts, out of 8000000 for 9000
+ 11276 multiletter control sequences out of 15000+600000
+ 80808 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,12n,94p,940b,371s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/
-texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-
-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fon
-ts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texm
+f/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-math
+ex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fon
+ts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr
 /share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/pub
 lic/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/l
@@ -1085,10 +1077,10 @@ e1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on tesi.pdf (19 pages, 452270 bytes).
+Output written on tesi.pdf (19 pages, 455631 bytes).
 PDF statistics:
  147 PDF objects out of 1000 (max. 8388607)
  103 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 20501 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 23061 words of extra memory for PDF output out of 24883 (max. 10000000)
 

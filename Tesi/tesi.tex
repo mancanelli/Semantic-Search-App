@@ -25,18 +25,26 @@
 
 \frontmatter
 \maketitle
-\dedication{Dedicato a\\ Morten Tyldum}
+%\dedication{Dedicato a\\ Morten Tyldum}
 
 %\begin{abstract}
 %Questa tesi parla del mio progetto
 %\end{abstract}
 
 \tableofcontents
+%\listoffigures
 
 \mainmatter
 \chapter{Introduzione}
-\section{Panoramica}
-\section{Dominio di interesse}
+\section{Obiettivi}
+
+Nel mondo contemporaneo l'informazione ricopre un ruolo di assoluta centralità e di importanza primaria. L'enorme quantità di dati che ci circonda, la costante crescita del patrimonio informativo necessario alle attività della società odierna, le svariate fonti da cui attingere necessitano di una proporzionale crescita dei sistemi informatici preposti alla loro elaborazione.\medskip
+
+Le nuove tecnologie del Semantic Web forniscono gli strumenti necessari a soddisfare questa esigenza, ottimizzando la strutturazione ed il processamento automatico dei dati. Il ruolo della macchina non è più solamente quello di contenere, ma anche di estrarre nuova conoscenza organizzandola in modo funzionale ed efficace, attraverso l'uso di formalismi che è in grado di riconoscere ed interpretare.\medskip
+
+Un ulteriore supporto alla migliore gestione dell'informazione viene inoltre fornito dallo sviluppo dei sistemi di raccomandazione: questi suggeriscono, filtrano e nel contempo arricchiscono il patrimonio informativo direttamente accessibile all'utente che ne usufruisce. L'attuale sviluppo del machine learning e dei modelli probabilistici consente una ulteriore e maggiore collaborazione implicita tra i vari attori, aumentando le prestazioni e contribuendo a raffinare i metodi di ragionamento degli elaboratori.\medskip
+
+\section{Capitoli}
 
 \chapter{Semantic Web}
 \section{Informazione e Conoscenza}
@@ -57,10 +65,10 @@ Per esprimere i metadati si utilizzano i linguaggi di annotazione (o markup lang
 Ai linguaggi di annotazione si aggiunge uno degli elementi chiave nel Web semantico, le ontologie. Una ontologia è "una rappresentazione formale ed esplicita di una concettualizzazione di un dominio di interesse". In altre parole si parla di un sistema formale in cui è possibile esprimere enunciati e dedurre le loro conseguenze logiche in modo del tutto meccanico.
 Il ruolo delle ontologie emerge nel momento in cui i soli linguaggi di annotazione non sono in grado di legare i concetti e di stabilire le relazioni che intercorrono fra di essi. La più semplice relazione definibile fra due termini è la relazione di sussunzione (o is-a) nell'ambito della creazione di una tassonomia.\medskip
 
-Il mezzo comunemente utilizzato per la definizione delle ontologie è rappresentato delle logiche descrittive. Queste sono utilizzate soprattutto per esprimere la conoscenza in termini di concetti e relazioni che li caratterizzano. I costrutti base utilizzati sono i predicati unari (concetti atomici), i predicati binari (ruoli atomici) e gli individui.
-Il fine è quello di fornire rigore formale e associare procedure automatiche di ragionamento. Una base di conoscenza comprende due componenti fondamentali, la prima per la definizione della conoscenza intensionale (TBox), utile nell'abito dei concetti e delle relazioni, e la seconda per la conoscenza estenzionale (ABox), utile nell'ambito degli oggetti presi in esame.\medskip
+Il mezzo comunemente utilizzato per la definizione delle ontologie è rappresentato delle logiche descrittive. Queste sono impiegate soprattutto per esprimere la conoscenza in termini di concetti e relazioni che li caratterizzano. I costrutti base utilizzati sono i predicati unari (concetti atomici), i predicati binari (ruoli atomici) e gli individui.
+Il fine è quello di fornire rigore formale e associare procedure automatiche di ragionamento. Una base di conoscenza comprende due componenti fondamentali, la prima per la definizione della conoscenza intensionale (TBox), utile nell'ambito dei concetti e delle relazioni, e la seconda per la conoscenza estensionale (ABox), utile nell'ambito degli oggetti presi in esame.\medskip
 
-\MakeUppercase{è} evidente come l'uso di una ontologia rispecchia la necessità esplicitata di conoscere la semantica dell'informazione trattata ed eseguire inferenze per far emergere nuova conoscenza precedentemente celata.
+\MakeUppercase{è} evidente come l'uso di una ontologia rispecchia la necessità esplicitata di conoscere la semantica dell'informazione ed eseguire inferenze per far emergere nuova conoscenza in precedenza celata.
 L'attività di inferenza permette così di estendere l'insieme degli assiomi asseriti in un determinato contesto, ma anche di verificarne la consistenza interna nel processo denominato validazione. Un ragionatore automatico (o reasoner) è un software in grado di svolgere tale attività su delle basi di conoscenza, anche per mezzo della logica dei predicati del primo ordine.\medskip
 
 Per perseguire l'obiettivo di garantire ai dati un ruolo di primo piano nel nuovo paradigma, si introducono infine i concetti di vocabolario e Linked Data. Un vocabolario è una struttura condivisa per la rappresentazione delle informazioni che afferiscono ad uno stesso dominio.
@@ -69,9 +77,7 @@ La possibilità di organizzare la conoscenza integrando i dati provenienti da di
 Accanto all'uso di vocabolari e ontologie è necessario avere delle norme per rendere disponibili grandi quantità di dati e per far sì che possano essere trattati correttamente. Si parla quindi di Linked Data per riferirsi alle modalità di pubblicazione dei dati strutturati, utili per la successiva integrazione con altre informazioni preesistenti e l'interrogazione semantica.
 I dataset più celebri sono quelli che compongono il progetto Linked Open Data (LOD), l'esempio meglio rappresentativo dell'utilizzo dei nuovi strumenti per la gestione dei dati annotati e per la definizione semantica degli stessi.\medskip
 
-\clearpage
-
-\section{RDF, OWL e SPARQL}
+\section{Tecnologie}
 
 Numerose sono le tecnologie nate per il conseguimento dei diversi aspetti che coinvolgono la realizzazione del Web semantico. Fra queste si possono identificare le più popolari ed utilizzate per la definizione dei metadati, per la creazione delle ontologie e per le interrogazioni: RDF (Resource Description Framework), OWL (Web Ontology Language) e SPARQL (acronimo ricorsivo di SPARQL Protocol and RDF Query Language).\medskip
 
@@ -81,6 +87,7 @@ Numerose sono le tecnologie nate per il conseguimento dei diversi aspetti che co
   \caption{Struttura a strati del Web semantico}
 \end{figure}
 
+\subsection{RDF}
 RDF è un semplice framework per la rappresentazione e lo scambio di metadati strutturati. Il modello concettuale che realizza RDF permette l'organizzazione delle informazioni in un insieme di triple, ognuna delle quali è composta da un soggeto, un predicato ed un oggetto. Il soggetto, ovvero la risorsa, e il predicato delle triple sono necessariamente rappresentati da un URI (Uniform Resource Identifier), mentre l'oggetto può essere un tipo di dato primitivo. Con RDF si definisce quindi un insieme di relazioni binarie che intercorrono tra due dati, ma non si forniscono regole di definizione per queste relazioni.\medskip
 
 Un dataset RDF può essere visto e rappresentato come un digrafo, in cui i predicati sono gli archi orientati dai soggetti agli oggetti. Questa descrizione, adeguata nell'ambito della visualizzazione grafica, non è però adatta all'elaborazione automatica: si utilizza perciò una serializzazione testuale, espressa in diverse notazioni sintattiche fra cui RDF/XML, N-Triples e turtle (Terse RDF Triple Language).
@@ -92,16 +99,16 @@ L'inserimento e la successiva estrazione di triple da un documento HTML si basa 
 Il primo passo verso la creazione di un linguaggio ontologico è quello di RDF-S (RDF Schema), pensato per aggiungere elementi che non possono essere espressi con il solo framework RDF. In particolare si possono definire relazioni tra termini generici invece che tra individui, con nuovi costrutti che classificano risorse e proprietà.
 Tali relazioni possono ancora essere rappresentate con un grafo orientato e viene mantenuta quindi la stessa sintassi utilizzata per RDF anche per gli altri linguaggi del Web semantico (approccio same-syntax). Una dichiarazione con RDF-S può essere vista come un vincolo sulla base di dati delle triple RDF. Una importante caratteristica delle dichiarazioni in RDF/RDF-S consiste nella possibilità di parlare di sé. Si parla in questo caso di proprietà di riflessività del linguaggio.\medskip
 
+\subsection{OWL}
 Una più completa ed espressiva famiglia di linguaggi ontologici è OWL: questo strumento è stato realizzato per estendere le possibilità concesse dagli standard precedenti e costruire ontologie sempre più complesse, basate su definiti formalismi e sulle procedure di ragionamento automatico. La famiglia OWL si compone di tre differenti linguaggi: OWL-Lite, OWL-DL, OWL Full.
 Questi si differenziano per le possibilità che offrono nell'ambito della potenza espressiva. La ricerca di una maggiore espressività, e quindi di una più ampia capacità di costruzione delle ontologie, sacrifica però uno degli aspetti fondamentali del Web semantico, la decidibilità logica (o la trattabilità in termini di costo computazionale nel processo di reasoning).\medskip
 
 A differenza di quanto accade in RDF-S, OWL permette di costruire una classe enumerandone gli individui o utilizzando gli operatori insiemistici come l'unione, l'intersezione o il complemento. Inoltre è possibile costruire proprietà con vincoli come quelli di quantificazione esistenziale,  di quantificazione universale, di cardinalità minima e di cardinalità massima.\medskip
 
+\subsection{SPARQL}
 L'ultima delle tecnologie fondamentali nate per il supporto del Web semantico è SPARQL, un linguaggio di interrogazione utile per estrarre i dati codificati in basi di triple RDF. Questo strumento è stato reso standard nel 2008 dal Data Access Working Group, gruppo di lavoro del consorzio W3C. Così come SQL riflette, nella rappresentazione delle query, il modello relazionale su cui si applica, allo stesso modo SPARQL basa la propria rappresentazione sul concetto di grafo: una interrogazione viene espressa come il pattern di un grafo RDF e la risposta a tale interrogazione è costituita da tutte e sole le triple che istanziano quel pattern (graph matching).\medskip
 
 Scendendo più in profondità nella struttura di una query SPARQL si possono idendificare diverse sezioni. Nella prima parte di dichiarano i prefissi utilizzati, si decide il tipo di risposta da ottenere (con i termini select, construct, ask e describe) e si definiscono i dataset su cui agire. A questo segue il vero e proprio graph pattern, costituito da un insieme di triple e di variabili per le quali si troveranno le corrispondenze nel dataset interrogato. Al termine si possono usare filtri e modificatori della query per ottenere un migliore controllo sulle informazioni presentate all'utente.\medskip
-
-\clearpage
 
 \section{Modello Relazionale e Modello E-R}
 
@@ -168,8 +175,6 @@ dove
 Nel tentativo di superare le criticità ad ottenere il miglior sistema di raccomandazione è stato sviluppato l'approccio ibrido, che integra i metodi descritti in precedenza e li sintetizza con strategie differenti. Infine, negli ultimi anni, sono nati nuovi sistemi ispirati al crescente utilizzo dei social network.
 L'approccio semantic-social si fonda perciò sulla modellazione delle reti sociali e delle interazioni fra persone ed oggetti. Le reti sono rappresentate da strutture astratte come i grafi e possono essere visitate con i tradizionali algoritmi di ricerca su grafo come depth-first search (DFS).\medskip
 
-\clearpage
-
 \section{TF-IDF e Cosine Similarity}
 
 Come descritto in precedenza, uno dei metodi utilizzati per la realizzazione di un sistema di raccomandazione content-based è il Vector Space Model. Questo modello,  utilizzato spesso nell'ambito dell'information retrieval, consiste essenzialmente nel rappresentare gli elementi che dovranno essere raccomandati agli utenti in uno spazio vettoriale n-dimensionale.
@@ -193,7 +198,7 @@ w_{ij} = t\!fidf_{i,j} = t\!f(i,j) \cdot idf(i)
 
 \medskip
 
-Una volta trovati i vettori che rappresentano gli elementi del sistema, la raccomandazione può essere effettuata in base alla distanza di questi vettori. Si calcola quindi, per ogni elemento, l'insieme dei suoi correlati: un utente infatti potrà apprezzare questi ultimi se ha scelto in precedenza l'oggetto di riferimento. Per calcolare la distanza fra due vettori è possibile certamente utilizzare la più tradizionale distanza euclidea. Più utilizzata e più robusta per alcune situazioni inconsuete è invece la tecnica del coseno di similitudine: dati i vettori $s_1$ e $s_2$ si calcola il coseno dell'angolo fra loro compreso
+Una volta ricavati tutti i coefficienti dei vettori che rappresentano gli elementi del sistema, la raccomandazione può essere effettuata in base alla distanza di questi vettori. Più vicini sono i vettori, più simili saranno gli elementi sottostanti. In altre parole quindi si calcola, per ogni elemento, l'insieme dei suoi correlati: un utente potrà infatti apprezzare questi ultimi se ha scelto in precedenza l'oggetto di riferimento. Per ottenere la distanza fra due vettori è possibile certamente utilizzare la tradizionale distanza euclidea. Più utilizzata e più robusta per alcune situazioni inconsuete è invece la tecnica del coseno di similitudine: dati i vettori $s_1$ e $s_2$ si calcola il coseno dell'angolo fra loro compreso
 \[
 \cos(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1|| \, ||s_2||} = \frac{s_1^T s_2}{||s_1|| \, ||s_2||} = \frac{\sum_{i} w_{i1} w_{i2}}{\sqrt{\sum_{i} w_{i1}^2} \sqrt{\sum_{i} w_{i2}^2}}
 \]
@@ -204,7 +209,7 @@ Una volta trovati i vettori che rappresentano gli elementi del sistema, la racco
   \caption{Distanza fra vettori}
 \end{figure}
 
-Il risultato ottenuto avrà sempre un valore compreso tra $0$ e $1$, se le componenti dei vettori impiegati sono numeri razionali non negativi. Un risultato pari ad uno corrisponde ad una maggiore somiglianza degli elementi considerati. Il coseno di similitudine non fa altro che normalizzare il prodotto scalare fra i vettori con la loro norma, in modo tale che documenti possano avere valori maggiori in base alla loro lunghezza. In sostituzione di questa tecnica, altre misure utilizzate sono il coefficiente di Dice
+Il risultato ottenuto avrà sempre un valore compreso tra $0$ e $1$, se le componenti dei vettori impiegati sono numeri razionali non negativi. Un risultato pari ad uno corrisponde ad una maggiore somiglianza degli elementi considerati. Il coseno di similitudine non fa altro che dividere il prodotto scalare fra i vettori con la loro norma, in modo tale che documenti possano avere valori maggiori in base alla loro lunghezza. In sostituzione di questa tecnica, altre misure utilizzate sono il coefficiente di Dice
 \[
 sim(s_1, s_2) = 2 \, \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2} = 2 \, \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2}
 \]
@@ -218,7 +223,32 @@ sim(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2 - s_1 \cdot s_2} = \f
 Nonostante il vasto impiego dei modelli probabilistici, il Vector Space Model mantiene un posto di rilievo ed interesse nello studio dei sistemi di raccomandazione. Diversi sono i tentativi di integrare questo metodo con l'approccio collaborativo e di estenderlo per il superamento di alcuni limiti, quali la necessaria indipendenza interna dei termini del documento analizzato, la perdita dell'ordinamento e la mancata considerazione del contesto semantico. Inoltre ha il vantaggio di essere un metodo di semplice implementazione, basato esclusivamente sull'algebra lineare ed efficace nel caso di insieme di dati poco complessi.
 
 \chapter{Architettura}
-\section{Protégé}
+
+\section{Struttura}
+
+Il progetto si compone di diverse fasi, ognuna delle quali costituita da un modulo software autoconclusivo e sviluppata con linguaggi e framework differenti.\medskip
+
+In una fase preliminare viene disegnato il diagramma E-R sulla base dei dataset relativi al dominio di interesse. Questo costituisce il modello dei dati su cui viene creata l'ontologia OWL per modellizzare le entità e le relazioni del dominio: a tale scopo è stato impiegato l'editor Protégé, ampiamente utilizzato nell'ambito dello sviluppo delle basi di conoscenza.
+L'ontologia così formata viene successivamente popolata dai dati forniti da alcuni dei dataset della piattaforma Kaggle, opportunamente ristrutturati sottoforma di insieme di triple per rispondere ai requisiti di RDF. Il risultato di questa elaborazione consiste in un documento testuale in formato RDF/XML. Il lunguaggio utilizzato in questa fase è Python, con la libreria esterna rdflib.\medskip
+
+La seconda fase si pone come obiettivo quello di individuare le relazioni che intercorrono fra i dati analizzati ovvero di trovare, per ogni individuo presente nell'ontologia, un insieme di elementi ad esso correlati. A questo riguardo si è ricorso alla tecnica di raccomandazione del Vector Space Model, utile per fornire all'utente indicazioni relative alla similarità tra gli oggetti. Il prodotto di questa attività consiste in un nuovo documento del tutto analogo al precedente ma arricchito con le nuove informazioni estratte. Java ed il framework Jena sono gli strumenti utilizzati per l'impllementazione del metodo descritto.\medskip
+
+La terza ed ultima fase è preposta alla presentazione dei dati elaborati in precedenza. La visualizzazione avviene, utilizzando uno dei browser disponibili, nella tradizionale forma tabellare e fornisce funzioni supplementari per la navigazione delle informazioni. Queste ultime vengono reperite attraverso l'esecuzione di opportune query SPARQL dal documento prodotto nel corso delle prime due fasi. Lo sviluppo è stato realizzato con metodologia server-side impiegando in particolar modo Node.js ed il framework Express.js.
+
+\section{Strumenti}
+\subsection{Protégé}
+
+Protégé-OWL è un editor visuale pensato per la creazione, la modifica e l'esportazione delle ontologie per il Web semantico. Nato come progetto per modellare il dominio biomedico presso l'università di Stanford, attualmente è lo strumento più noto per la gestione delle ontologie OWL, grazie anche ai numerosi plug-in di cui dispone e alla semplicità di utilizzo. Protégé consente quindi la creazione di un insieme di classi, di oggetti che afferiscono a queste classi e di proprietà che le mettono in relazione tra loro. A questo si aggiungono le annotazioni, l'importazione dei file esterni per la modularità e i prefissi che vengono usati nell'ontologia.\medskip
+
+Le classi sono organizzate in una gerarchia (asserted hierarchy) nella quale la superclasse predefinita è {\it owl:Thing}. Queste andranno a rappresentare le entità da modellare nel dominio. Le classi possono essere dichiarate equivalenti o disgiunte da altre classi, e si servono dei vincoli di restrizione per limitare gli individui che possono essere istanziati. Del tutto analogo è il procedimento per la creazione delle proprietà, divise in Object Properties e Data Properties, per le quali è possibile definire le entità che compongono il dominio ed il range.
+
+\subsection{Jena}
+
+Jena è un framework open source per lo sviluppo in Java di applicazioni legate all'ambito del Web semantico. In particolare, la struttura delle API (Application Programming Interface) è progettata per la gestione di dati RDF: vengono infatti fornite diverse funzioni volte alla creazione, alla serializzazione e al parsing dei documenti strutturati in triple. \MakeUppercase{è} possibile creare nodi tipati e containers, ma anche definire classi wrapper per la manipolazione di vocabolari implementati contestualmente o predefiniti (come il celebre Dublin Core).\medskip
+
+Per accedere ai dati memorizzati in un modello RDF, sia esse contenuto in memoria principale o meno, Jena espone delle API per l'esecuzione di una query SPARQL e la successiva visita iterativa dei risultati ottenuti. Le classi QueryFactory, QueryExecution e ResultSet consentono il conseguimento di questo obiettivo. \MakeUppercase{è} consentito infine eseguire le stesse operazioni interrogando i dati RDF in remoto per mezzo dei corrispondenti endpoint.
+
+\subsection{Node.js}
 
 \chapter{Implementazione}
 \section{Kaggle e ER}
@@ -238,14 +268,12 @@ Nonostante il vasto impiego dei modelli probabilistici, il Vector Space Model ma
   \item Dati Utilizzati (Kaggle) e manipolazione preliminare
   \item Diagrammi ER e ontologico
   \item Creazione Ontologia OWL (Protege)
-  \item Description Logics
   \item Triple RDF da csv (Python e rdflib)
   \item Correlazione (Java e Jena)
   \item Query semantiche (da SQL a SPARQL)
   \item Rappresentazione Web (UI)
   \item Node.js e Express.js
   \item Paginazione e ricerca (JQuery)
-  \item Data Analysis
   \item Confronto prestazioni
   \item Reverse Engineering e ottimizzazione delle prestazioni
   \item Risultati ottenuti
