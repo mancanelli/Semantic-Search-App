@@ -28,5 +28,4 @@
     <owl:Class rdf:about="http://www.semanticweb.org/matteo/ontologies/project#Artist">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/matteo/ontologies/project#Person"/>
     </owl:Class>
-
 </rdf:RDF>

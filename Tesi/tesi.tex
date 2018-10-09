@@ -48,6 +48,8 @@
 \newcommand{\insertcode}[1]{\lstinputlisting[label=#1,style=Style1]{#1}}
 \newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
 
+\addto\captionsitalian{\renewcommand{\appendixname}{Allegato}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -92,7 +94,7 @@ Sono questi gli aspetti che legano indissolubilmente la nuova ricerca sulla rete
 Il primo strumento utilizzato per realizzare il fine prefissato è quello di strutturare e corredare i documenti di metadati. Questi riflettono parte di quello che c'è da sapere su un certo insieme di dati e ciò che da tale conoscenza è possibile ricavare.
 Per esprimere i metadati si utilizzano i linguaggi di annotazione (o markup language) costruiti sulla base del tradizionale XML (eXtensible Markup Language). Le annotazioni sono quindi lo strumento elaborato per rappresentare il significato dei dati annotati.\medskip
 
-Ai linguaggi di annotazione si aggiunge uno degli elementi chiave nel Web semantico, le ontologie. Una ontologia è "una rappresentazione formale ed esplicita di una concettualizzazione di un dominio di interesse". In altre parole si parla di un sistema formale in cui è possibile esprimere enunciati e dedurre le loro conseguenze logiche in modo del tutto meccanico.
+Ai linguaggi di annotazione si aggiunge uno degli elementi chiave nel Web semantico, le ontologie. Una ontologia è "una rappresentazione formale ed esplicita di una concettualizzazione di un dominio di interesse"\cite{sem_web}. In altre parole si parla di un sistema formale in cui è possibile esprimere enunciati e dedurre le loro conseguenze logiche in modo del tutto meccanico.
 Il ruolo delle ontologie emerge nel momento in cui i soli linguaggi di annotazione non sono in grado di legare i concetti e di stabilire le relazioni che intercorrono fra di essi. La più semplice relazione definibile fra due termini è la relazione di sussunzione (o is-a) nell'ambito della creazione di una tassonomia.\medskip
 
 Il mezzo comunemente coinvolto per la definizione delle ontologie è rappresentato delle logiche descrittive. Queste sono impiegate soprattutto per esprimere la conoscenza in termini di concetti e relazioni che li caratterizzano. I costrutti base utilizzati sono i predicati unari (concetti atomici), i predicati binari (ruoli atomici) e gli individui.
@@ -223,7 +225,7 @@ idf(t) = \log \frac{|D|}{|\{d \in D : t \in d\}|}
 \]
 Il calcolo della componente relativa a $t$ nel vettore sarà quindi dato dalla combinazione dei valori precedentemente calcolati, ovvero
 \[
-w_{ij} = t\!fidf_{i,j} = t\!f(i,j) \cdot idf(i)
+w_{ij} = t\!fidf_{i,j} = t\!f(t_i,d_j) \cdot idf(t_i)
 \]
 
 \medskip
@@ -280,7 +282,9 @@ Per accedere ai dati memorizzati in un modello RDF, sia esse contenuto in memori
 
 \subsection{Node.js}
 
-Node.js è un ambiente run-time per l'esecuzione di codice JavaScript lato server e la produzione di pagine web dinamiche. Consente
+Node.js è un ambiente run-time per l'esecuzione di codice JavaScript lato server e la produzione di pagine web dinamiche. Fra tutti i linguaggi e le tecnologie per lo sviluppo backend quali PHP, Java, .NET, Python e Ruby, Node presenta alcuni vantaggi strutturali che lo hanno reso molto popolare, tanto per le grandi aziende quanto per le innovative startup. Il primo fra questi vantaggi è proprio la possibilità di utilizzare lo stesso JavaScript, ampiamente diffuso e consolidato, per realizzare il server di una applicazione web. A questo si aggiunge una struttura che favorisce la programmazione ad eventi e le operazioni asincrone: si ottiene così uno strumento volto alla velocità di esecuzione, alla produttività e alla scalabilità.\medskip
+
+
 
 \chapter{Implementazione}
 \section{I dati}
@@ -339,37 +343,33 @@ Le operazioni che implementano il vero e proprio metodo del Vector Space Model s
 
 \section{La visualizzazione}
 
+La fase finale del progetto è utile per presentare le informazioni processate e contenute nel dominio ontologico all'utente a cui è rivolto il servizio e che usufrirà di quelle stesse informazioni. Questo è reso possibile dallo sviluppo di un modulo realizzato con Node.js ed il suo più celebre framework Express.js. La fruizione sarà quindi mediata dall'uso di un browser e avverrà con le modalità legate alla navigazione web.\medskip
 
+Per la creazione della home page e delle pagine relative alle quattro categorie di dati sono state create cinque \emph{routes} nel file principale app.js ed altrettanti documenti JavaScript. Questi ultimi sono in grado  di richiamare le funzioni per l'esecuzione delle interrogazioni che filtrano le informazioni e di associare ogni route al relativo codice per la costruzione della pagina web. Si è optato per una intuitiva visualizzazione tabellare (realizzata con il toolkit Bootstrap), del tipo mostrato in figura.\medskip
 
-\section{La paginazione e la ricerca}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.34]{music.png}
+  \caption{Rappresentazione tabellare dei dati}
+\end{figure}
 
+Le pagine HTML che costruiscono la home page e le tabelle dei dati, scritte all'interno di file in formato ejs (Embedded JavaScript), sono corredate da file css per la corretta formattazione e da funzioni espresse in JavaScript con l'ausilio della libreria JQuery. Queste funzioni sono definite per favorire una più rapida e immediata fruizione da parte dell'utente del contenuto presentato. In particolare si opera la paginazione della tabella, per dividere le entry in base alla dimensione selezionata, e si inserisce un metodo di ricerca per la restituzione di un sottoinsieme delle sole entry che soddisfano il criterio introdotto.\medskip
 
+L'unico requisito aggiuntivo richiesto per l'effettiva esecuzione del file app.js risiede nella libreria rdflib.js, imprescindibile per il parsing dell'ontologia e per l'esecuzione di query SPARQL sulla stessa. Le informazioni così ottenute sono utilizzate per popolare le tabelle precedentemente mostrate. La correttezza del software è stata testata su due tra i browser più impiegati comunemente, come Mozilla Firefox e Google Chrome.
 
+\appendix
+\chapter{Software}
+Tutti i listati sono una porzione dell'intero software generato, utili a scopo dimostrativo per osservarne la struttura
 
-\chapter{Conclusioni}
-\section{Risultati}
-%Questo documento sarà del tipo seguente
-
-%\lstset{language=XML}
-%\insertcode{myontology.owl}
-
-\chapter*{Argomenti}
-\begin{enumerate}
-  \item Correlazione (Java e Jena)
-  \item Query semantiche (da SQL a SPARQL)
-  \item Rappresentazione Web (UI)
-  \item Node.js e Express.js
-  \item Paginazione e ricerca (JQuery)
-  \item Confronto prestazioni
-  \item Reverse Engineering e ottimizzazione delle prestazioni
-  \item Risultati ottenuti
-\end{enumerate}
+\section*{Ontologia OWL creata con Protégé}
+\lstset{language=XML}
+\insertcode{myontology.owl}
 
 \backmatter
-\cleardoublepage
-%\addcontentsline{toc}{chapter}{\bibname}
+\clearpage
+\addcontentsline{toc}{chapter}{\bibname}
 %\phantomsection
-%\bibliographystyle{sapthesis} % BibTeX style
-%\bibliography{bibliography} % BibTeX database without .bib extension
+\bibliographystyle{sapthesis}
+\bibliography{bib_tesi}
 
 \end{document}
