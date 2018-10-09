@@ -1,3 +1,6 @@
+\PassOptionsToPackage{usenames}{color}
+\PassOptionsToPackage{dvipsnames}{color}
+
 \documentclass[Lau,binding=0.6cm,noexaminfo,oneside]{sapthesis}
 
 \usepackage{microtype}
@@ -20,13 +23,41 @@
 
 \include{packages}
 
+\definecolor{DarkGreen}{rgb}{0.0,0.4,0.0}
+
+\lstdefinelanguage{JavaScript}{
+  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{HTML5}{
+        language=html,
+        sensitive=true,
+        otherkeywords={
+        % HTML tags
+        <html>, <head>, <title>, </title>, <meta, />, </head>, <body>,
+        <canvas, \/canvas>, <script>, </script>, </body>, </html>, <!, html>, <style>, </style>
+        },
+        ndkeywords={
+        % HTML attributes
+        charset=, id=, width=, height=,
+        % CSS properties
+        border:, transform:, -moz-transform:, transition-duration:, transition-property:, transition-timing-function:, font-weight
+        },
+        morecomment=[s]{<!--}{-->},
+        tag=[s]
+}
+
 \lstdefinestyle{Style1}{
 	backgroundcolor=\color{yellow!13},
 	basicstyle=\footnotesize\ttfamily,
 	breakatwhitespace=false,
 	breaklines=true,
 	captionpos=b,
-	commentstyle=\usefont{T1}{pcr}{m}{sl}\color{green},
+	commentstyle=\usefont{T1}{pcr}{m}{sl}\color{DarkGreen},
 	deletekeywords={},
 	firstnumber=1,
 	frame=single,
@@ -94,7 +125,7 @@ Sono questi gli aspetti che legano indissolubilmente la nuova ricerca sulla rete
 Il primo strumento utilizzato per realizzare il fine prefissato è quello di strutturare e corredare i documenti di metadati. Questi riflettono parte di quello che c'è da sapere su un certo insieme di dati e ciò che da tale conoscenza è possibile ricavare.
 Per esprimere i metadati si utilizzano i linguaggi di annotazione (o markup language) costruiti sulla base del tradizionale XML (eXtensible Markup Language). Le annotazioni sono quindi lo strumento elaborato per rappresentare il significato dei dati annotati.\medskip
 
-Ai linguaggi di annotazione si aggiunge uno degli elementi chiave nel Web semantico, le ontologie. Una ontologia è "una rappresentazione formale ed esplicita di una concettualizzazione di un dominio di interesse"\cite{sem_web}. In altre parole si parla di un sistema formale in cui è possibile esprimere enunciati e dedurre le loro conseguenze logiche in modo del tutto meccanico.
+Ai linguaggi di annotazione si aggiunge uno degli elementi chiave nel Web semantico, le ontologie. Una ontologia è "una rappresentazione formale ed esplicita di una concettualizzazione di un dominio di interesse". In altre parole si parla di un sistema formale in cui è possibile esprimere enunciati e dedurre le loro conseguenze logiche in modo del tutto meccanico.
 Il ruolo delle ontologie emerge nel momento in cui i soli linguaggi di annotazione non sono in grado di legare i concetti e di stabilire le relazioni che intercorrono fra di essi. La più semplice relazione definibile fra due termini è la relazione di sussunzione (o is-a) nell'ambito della creazione di una tassonomia.\medskip
 
 Il mezzo comunemente coinvolto per la definizione delle ontologie è rappresentato delle logiche descrittive. Queste sono impiegate soprattutto per esprimere la conoscenza in termini di concetti e relazioni che li caratterizzano. I costrutti base utilizzati sono i predicati unari (concetti atomici), i predicati binari (ruoli atomici) e gli individui.
@@ -140,12 +171,12 @@ A differenza di quanto accade in RDF-d, OWL permette di costruire una classe enu
 \subsection{SPARQL}
 L'ultima delle tecnologie fondamentali nate per il supporto del Web semantico è SPARQL, un linguaggio di interrogazione utile per estrarre i dati codificati in basi di triple RDF. Questo strumento è stato reso standard nel 2008 dal Data Access Working Group, gruppo di lavoro del consorzio W3C. Così come SQL riflette, nella rappresentazione delle query, il modello relazionale su cui si applica, allo stesso modo SPARQL basa la propria rappresentazione sul concetto di grafo: una interrogazione viene espressa come il pattern di un grafo RDF e la risposta a tale interrogazione è costituita da tutte e sole le triple che istanziano quel pattern (graph matching).\medskip
 
-Scendendo più in profondità nella struttura di una query SPARQL si possono idendificare diverse sezioni. Nella prima parte di dichiarano i prefissi utilizzati, si decide il tipo di risposta da ottenere (con i termini select, construct, ask e describe) e si definiscono i dataset su cui agire. A questo segue il vero e proprio graph pattern, costituito da un insieme di triple e di variabili per le quali si troveranno le corrispondenze nel dataset interrogato. Al termine si possono usare filtri e modificatori della query per ottenere un migliore controllo sulle informazioni presentate all'utente.\medskip
+Scendendo più in profondità nella struttura di una query SPARQL si possono idendificare diverse sezioni. Nella prima parte si dichiarano i prefissi utilizzati, si decide il tipo di risposta da ottenere (con i termini select, construct, ask e describe) e si definiscono i dataset su cui agire. A questo segue il vero e proprio graph pattern, costituito da un insieme di triple e di variabili per le quali si troveranno le corrispondenze nel dataset interrogato. Al termine si possono usare filtri e modificatori della query per ottenere un migliore controllo sulle informazioni presentate all'utente.\medskip
 
 \section{Modello Relazionale e Modello E-R}
 
 Il nuovo Web dei dati deve inserirsi all'interno di una ampia e complessa struttura di sistemi informativi largamente utilizzati nel mondo dell'elaborazione automatica. La manipolazione delle informazioni è comunemente affidata alla costruzione di sistemi di gestione delle basi di dati (DBMS). Nella strutturazione di una base dati si possono individuare tre fasi consecutive: la progettazione concettuale, la progettazione logica e la progettazione fisica.
-La prima fase, corrispondente alla progettazione concettuale, è essenzialmente realizzata sfruttando il modello E-R, strumento principale per la rappresentazione grafica in forma di schema o diagramma. Il modello relazionale è invece il modello più diffuso per la realizzazione della progettazione logica e per le interrogazioni SQL. \MakeUppercase{è} necessario quindi sviluppare tecniche per l'integrazione di questi modelli con le nuove tecnologie del Web semantico.\medskip
+La prima fase è essenzialmente realizzata sfruttando il modello E-R, strumento principale per la rappresentazione grafica in forma di schema o diagramma. Il modello relazionale è invece il modello più diffuso per la realizzazione della progettazione logica e per le interrogazioni SQL. \MakeUppercase{è} necessario quindi sviluppare tecniche per l'integrazione di questi modelli con le nuove tecnologie del Web semantico.\medskip
 
 Il modello relazionale si basa sul concetto matematico di relazione. Detti $D_1, D_2, ..., D_n$ una serie di $n$ domini, si definisce relazione un sottoinsieme di n-uple ordinate $(d_1, d_2, ..., d_n)$ generato dal prodotto cartesiano fra i domini $D_1 \times D_2 \times ... \times D_n$, dove $d_1 \! \in \! D_1, d_2 \! \in \! D_2, ..., d_n \! \in \! D_n$.
 Nel modello relazionale, la relazione è rappresentata in forma tabellare e ogni dominio è visto come un attributo a cui è associato un nome. La mancanza di una struttura posizionale rende l'ordinamento irrilevante, ma nello stesso tempo ogni tupla deve avere elementi di tipo omogeneo rispetto agli attributi definiti.\medskip
@@ -181,7 +212,7 @@ La prima fase di cui si compone un sistema di raccomandazione è la raccolta dei
 Gli input su cui lavorerà il sistema possono essere forniti esplicitamente (ad esempio, attraverso un metodo di rating) o, in modo più sofisticato, ottenuti mediante l'osservazione del comportamento degli utenti ed una successiva deduzione delle loro preferenze. Quest'ultimo metodo resta, allo stato dell'arte, meno performante del precedente, anche se rappresenta al meglio l'idea sottostante un sistema di raccomandazione ed è immune dal problema del bias.\medskip
 
 In base alla tecnica usata per ottenere le raccomandazioni, i sistemi possono essere classificati in quattro categorie: filtraggio content-based, filtraggio collaborativo, filtraggio ibrido e filtraggio semantic-social. Le tecniche content-based sfruttano gli attributi degli oggetti di interesse per ottenere i risultati piuttosto che le informazioni sugli utenti.
-Questo criterio è principalmente utilizzato nell'analisi di documenti testuali e pagine web ed estende alcuni degli approcci tipici dell'information retrieval. Si impiegano a tal proposito metodi quali Vector Space Model e Neural Networks per estrarre relazioni fra i documenti e fornire le raccomandazioni agli utenti. Il principale svantaggio risiede nella necessità di una conoscenza approfondita delle feature (caratteristiche) sulle quali fondare la valutazione. Nello stesso tempo però non si richiede la profilazione degli utenti e la condivisione delle loro informazioni, favorendo così la protezione della privacy.\medskip
+Questo criterio è principalmente utilizzato nell'analisi di documenti testuali e pagine web ed estende alcuni degli approcci tipici dell'information retrieval. Si impiegano a tal proposito metodi quali Vector Space Model e Neural Networks per estrarre relazioni fra i documenti e fornire le raccomandazioni agli utenti. Il principale svantaggio risiede nella necessità di una conoscenza approfondita delle features (caratteristiche) sulle quali fondare la valutazione. Nello stesso tempo però non si richiede la profilazione degli utenti e la condivisione delle loro informazioni, favorendo così la protezione della privacy.\medskip
 
 Il metodo collaborativo crea dei suggerimenti utilizzando la similarità tra gli utenti. Si registrano le scelte del maggior numero di persone e si forniscono raccomandazioni associandole in gruppi definiti neighborhood. Utenti con stesse preferenze possono quindi scambiare indirettamente diverse informazioni fra loro, suggerendo nuovi contenuti attraverso il sistema.
 In questo caso, l'utilità $u(c,d)$ dell'elemento $d$ per la persona $c$ è basata sull'utilità $u(c',d)$ assegnata a $d$ dalle persone $c' \in C' \subseteq C$ che sono simili a $c$. Anche questo metodo, nonostante sia più dinamico e attuale, non è esente da particolari svantaggi, primi fra tutti la scalabilità, la sparsità dei dati e la mancanza di sufficienti informazioni sugli utenti che si autenticano per la prima volta o che non condividono il loro profilo.\medskip
@@ -212,7 +243,7 @@ L'approccio semantic-social si fonda perciò sulla modellazione delle reti socia
 Come descritto in precedenza, uno dei metodi utilizzati per la realizzazione di un sistema di raccomandazione content-based è il Vector Space Model. Questo modello,  adoperato spesso nell'ambito dell'information retrieval, consiste essenzialmente nel rappresentare gli elementi che dovranno essere raccomandati agli utenti in uno spazio vettoriale n-dimensionale.
 Ogni elemento $d \in D$ sarà descritto da un vettore del tipo $d_j = (w_{1j}, w_{2j}, ..., w_{nj})$. La dimensione dei vettori dipende dal numero di caratteristiche sulle quali si vuole basare il sistema, ad esempio un insieme di parole chiave nel caso in cui, come spesso accede, gli elementi rappresentano dei documenti testuali.\medskip
 
-Per quanto detto, è necessario stabilire il modo in cui calcolare le componenti $w_{ij}$ dei vettori. Il primo e più immediato procedimento consiste nell'assegnare solo coefficienti di tipo binario in base alla presenza di una determinata caratteristica nell'elemento analizzato. Un modello così semplice è però insufficiente per ottenere buoni risultati. Si estende perciò questo metodo contando il numero di occorrenze delle feature ricercate.
+Per quanto detto, è necessario stabilire il modo in cui calcolare le componenti $w_{ij}$ dei vettori. Il primo e più immediato procedimento consiste nell'assegnare solo coefficienti di tipo binario in base alla presenza di una determinata caratteristica nell'elemento analizzato. Un modello così semplice è però insufficiente per ottenere buoni risultati. Si estende perciò questo metodo contando il numero di occorrenze delle features ricercate.
 \MakeUppercase{è} possibile per esempio contare le occorrenze dei termini rilevanti all'interno di un documento. Alcune parole molto frequenti possono però essere poco rilevanti e portare a classificazioni poco precise. Si ricorre quindi ad un modello più complesso, definito TF-IDF (term frequency - inverse document frequency). Il primo passo è calcolare la frequenza dei termini con elementi di normalizzazione. Detto $count(t,d)$ il numero di occorrenze del termine $t$ nel documento $d \in D$, è possibile utilizzare una delle seguenti formule
 \begin{gather*}
   t\!f(t,d) = \frac{count(t,d)}{|d|} \\
@@ -278,7 +309,7 @@ Le classi sono organizzate in una gerarchia (asserted hierarchy) nella quale la 
 
 Jena è un framework open source per lo sviluppo in Java di applicazioni legate all'ambito del Web semantico. In particolare, la struttura delle API (Application Programming Interface) è progettata per la gestione di dati RDF: vengono infatti fornite diverse funzioni volte alla creazione, alla serializzazione e al parsing dei documenti strutturati in triple. \MakeUppercase{è} possibile creare nodi tipati e containers, ma anche definire classi wrapper per la manipolazione di vocabolari implementati contestualmente o predefiniti (come il celebre Dublin Core).\medskip
 
-Per accedere ai dati memorizzati in un modello RDF, sia esse contenuto in memoria principale o meno, Jena espone delle API per l'esecuzione di una query SPARQL e la successiva visita iterativa dei risultati ottenuti. Le classi QueryFactory, QueryExecution e ResultSet consentono il conseguimento di questo obiettivo. \MakeUppercase{è} consentito infine eseguire le stesse operazioni interrogando i dati RDF in remoto per mezzo dei corrispondenti endpoint.
+Per accedere ai dati memorizzati in un modello RDF, sia esso contenuto in memoria principale o meno, Jena espone delle API per l'esecuzione di una query SPARQL e la successiva visita iterativa dei risultati ottenuti. Le classi QueryFactory, QueryExecution e ResultSet consentono il conseguimento di questo obiettivo. \MakeUppercase{è} consentito infine eseguire le stesse operazioni interrogando i dati RDF in remoto per mezzo dei corrispondenti endpoint.
 
 \subsection{Node.js}
 
@@ -289,7 +320,7 @@ Node.js è un ambiente run-time per l'esecuzione di codice JavaScript lato serve
 \chapter{Implementazione}
 \section{I dati}
 
-Nello sviluppo del presente progetto sono stati utilizzati diversi dataset che coinvolgono dettagliate informazioni relative all'ambito della multimedialità. Tali dataset sono stati ricavati dal vasto archivio presente sulla piattaforma online Kaggle e afferiscono a quattro principali categorie: libri, film, album musicali e videogiochi. I dati così ottenuti, contenuti in altrettanti file csv, sono il punto di partenza per l'intero sviluppo successivo del software.\medskip
+Nello sviluppo del presente progetto sono stati utilizzati diversi dataset con dettagliate informazioni relative all'ambito della multimedialità. Tali dataset sono stati ricavati dal vasto archivio presente sulla piattaforma online Kaggle e afferiscono a quattro principali categorie: libri, film, album musicali e videogiochi. I dati delle quattro categorie sono contenuti in altrettanti file csv e costituiscono il punto di partenza per lo sviluppo successivo del software.\medskip
 
 Dopo un iniziale preprocessamento dei file, utile per verificare la consistenza ed eliminare eventuali informazioni errate rispetto al dominio in esame, è possibile procedere con le prime fasi che caratterizzano il workflow. \MakeUppercase{è} stato perciò realizzato il diagramma E-R per definire in forma grafica lo schema concettuale dei dati presi in considerazione. Questo diagramma non si rende strettamente necessario per la successiva creazione dell'ontologia, ma si utilizza a tale scopo in questo progetto per mostrare come possa essere effettuata la traduzione fra i due modelli e come possano essere integrate le tecnologie del Web semantico con il più tradizionale metodo di progettazione delle basi di dati.\medskip
 
@@ -319,7 +350,7 @@ Dopo un iniziale preprocessamento dei file, utile per verificare la consistenza 
 }
 \end{center}
 
-Nello schema descritto, e allo stesso modo nei pragrafi successivi, si riduce lo studio all'ambito degli album musicali per una maggiore chiarezza espositiva. Il numero di classi e relazioni prese in considerazione quindi è molto maggiore rispetto a quanto viene rappresentato. Le altre categorie trattane nel software sono sviluppate in modo del tutto analogo.
+Nello schema descritto, e allo stesso modo nei paragrafi successivi, si riduce lo studio all'ambito degli album musicali per una maggiore chiarezza espositiva. Il numero di classi e relazioni prese in considerazione quindi è molto maggiore rispetto a quanto viene rappresentato. Le altre categorie trattate sono sviluppate in modo del tutto analogo.
 
 \section{L'ontologia}
 
@@ -335,17 +366,17 @@ Nello studio e nell'analisi di grandi quantità di dati è fondamentale cercare 
 
 Per il conseguimento dell'obiettivo dichiarato si è optato quindi per un metodo di filtraggio content-based: questo presenta infatti numerosi vantaggi se correttamente immerso nel contesto sviluppato. Il primo aspetto è sicuramente quello di mantenere in un ruolo di assoluta centralità l'informazione e la sua interpretazione da parte degli elaboratori. A questo si aggiunge una sorprendente efficacia, ottenuta a dispetto della semplicità del modello algebrico impiegato. I risultati inoltre non necessitano di alcuna azione da parte degli utenti e possono essere quindi ricavati anche in assenza di meccanismi di autenticazione e memorizzazione delle preferenze.\medskip
 
-Il sistema di raccomandazione sviluppato, in grado di suggerire per ogni elemento i suoi correlati, è stato realizzato con Java ed il relativo framework Jena. Quet'ultimo consente l'uso di classi e di metodi per istanziare un modello, per estrarne i dati attraverso l'uso di appropriate interrogazioni ed per la finale scrittura dei dati. Al termine dell'esecuzione viene corredata l'ontologia con le informazioni ricavate. A questo proposito si aggiunge una nuova Object Property che mette in relazione un individuo di una classe con un altro individuo della stessa classe. Questa proprietà viene definita correlatedWith e restituisce l'idea di affinità fra i due oggetti coinvolti.\medskip
+Il sistema di raccomandazione sviluppato, in grado di suggerire per ogni elemento i suoi correlati, è stato realizzato con Java ed il relativo framework Jena. Quet'ultimo consente l'uso di classi e di metodi per istanziare un modello, per estrarne i dati attraverso l'uso di appropriate interrogazioni e per la finale scrittura dei dati. Al termine dell'esecuzione viene corredata l'ontologia con le informazioni ricavate. A questo proposito si aggiunge una nuova Object Property che mette in relazione un individuo di una classe con un altro individuo della stessa classe. Questa proprietà viene definita correlatedWith e restituisce l'idea di affinità fra i due oggetti coinvolti.\medskip
 
 Le prime classi Java scritte in questa fase sono le classi in grado di istanziare gli elementi del dominio e prendono il nome dalle quattro categorie da cui provengono questi stessi elementi, ovvero Album, Book, Movie e Game. La classe MyQuery contiene invece i metodi responsabili per la corretta esecuzione delle interrogazioni SPARQL e della successiva organizzazione delle risposte ottenute in adeguate strutture dati. Questi metodi servono per estrarre dal documento OWL tutte e sole le triple che afferiscono ad una determinata categoria, ad esempio quella degli Album, ed effettuare controlli sull'integrità dei contenuti così ricavati.\medskip
 
-Le operazioni che implementano il vero e proprio metodo del Vector Space Model sono infine contenute nelle classi TFIDF, Similarity e Recommender. Le prime due, come suggerisce il nome stesso, sono preposte rispettivamente alla creazione dei vettori che rappresenteranno gli individui con il calcolo delle loro componenti e alla misura della distanza fra i suddetti vettori attraverso la misura del coseno di similitudine. In particolare, il numero delle componenti dei vettori  stabilito in base alle caratteristiche considerate come rilevanti ai fini della correlazione. Ogni album musicale ad esempio viene descritto con un vettore di tre componenti, ognuna delle quali relativa all'artista che lo ha prodotto, all'anno in cui è uscito e ai generi musicali a cui appartiene. Questi sono gli aspetti che in fase di progettazione sono stati individuati per stabilire le correlazioni. I vettori fra loro più vicini, ovvero con un angolo compreso di minore ampiezza, sono considerati in relazione fra loro e possono essere suggeriti come simili ad un utente fruitore del serizio. La classe Recommender non fa altro che chiamare i metodi delle due precedenti per rendere effettivo il sistema di raccomandazione. Un ultimo file, contenente la classe Main, è responsabile della ripetizione del processo per ogni contenuto estratto dall'interrogazione e della scrittura dei correlati all'interno del documento che contiene l'ontologia e l'insieme di triple, attraverso l'opportuna proprietà in precedenza definita.
+Le operazioni che implementano il vero e proprio metodo del Vector Space Model sono infine contenute nelle classi TFIDF, Similarity e Recommender. Le prime due, come suggerisce il nome stesso, sono preposte rispettivamente alla creazione dei vettori che rappresenteranno gli individui con il calcolo delle loro componenti e alla misura della distanza fra i suddetti vettori attraverso la misura del coseno di similitudine. In particolare, il numero delle componenti dei vettori  stabilito in base alle caratteristiche considerate come rilevanti ai fini della correlazione. Ogni album musicale ad esempio viene descritto con un vettore di tre componenti, ognuna delle quali relativa all'artista che lo ha prodotto, all'anno in cui è uscito e ai generi musicali a cui appartiene. Questi sono gli aspetti che in fase di progettazione sono stati individuati per stabilire le correlazioni. I vettori fra loro più vicini, ovvero con un angolo compreso di minore ampiezza, sono considerati in relazione fra loro e possono essere suggeriti come simili ad un utente fruitore del servizio. La classe Recommender non fa altro che chiamare i metodi delle due precedenti per rendere effettivo il sistema di raccomandazione. Un ultimo file, contenente la classe Main, è responsabile della ripetizione del processo per ogni contenuto estratto dall'interrogazione e della scrittura dei correlati all'interno del documento che contiene l'ontologia e l'insieme di triple, attraverso l'opportuna proprietà in precedenza definita.
 
 \section{La visualizzazione}
 
 La fase finale del progetto è utile per presentare le informazioni processate e contenute nel dominio ontologico all'utente a cui è rivolto il servizio e che usufrirà di quelle stesse informazioni. Questo è reso possibile dallo sviluppo di un modulo realizzato con Node.js ed il suo più celebre framework Express.js. La fruizione sarà quindi mediata dall'uso di un browser e avverrà con le modalità legate alla navigazione web.\medskip
 
-Per la creazione della home page e delle pagine relative alle quattro categorie di dati sono state create cinque \emph{routes} nel file principale app.js ed altrettanti documenti JavaScript. Questi ultimi sono in grado  di richiamare le funzioni per l'esecuzione delle interrogazioni che filtrano le informazioni e di associare ogni route al relativo codice per la costruzione della pagina web. Si è optato per una intuitiva visualizzazione tabellare (realizzata con il toolkit Bootstrap), del tipo mostrato in figura.\medskip
+Per la creazione della home page e delle pagine relative alle quattro categorie di dati sono state create cinque routes nel file principale app.js ed altrettanti documenti JavaScript. Questi ultimi sono in grado  di richiamare le funzioni per l'esecuzione delle interrogazioni che filtrano le informazioni e di associare ogni route al relativo codice per la costruzione della pagina web. Si è optato per una intuitiva visualizzazione tabellare (realizzata con il toolkit Bootstrap), del tipo mostrato in figura.\medskip
 
 \begin{figure}[!htb]
   \centering
@@ -359,16 +390,43 @@ L'unico requisito aggiuntivo richiesto per l'effettiva esecuzione del file app.j
 
 \appendix
 \chapter{Software}
-Tutti i listati sono una porzione dell'intero software generato, utili a scopo dimostrativo per osservarne la struttura
+Tutti i listati sono una ridotta porzione dell'intero software generato, utili solo a scopo dimostrativo per osservarne la struttura interna.
 
-\section*{Ontologia OWL creata con Protégé}
+\section*{Ontologia OWL}
 \lstset{language=XML}
 \insertcode{myontology.owl}
+
+\section*{Inserimento dei dati strutturati in triple}
+\lstset{language=Python}
+\insertcode{album_triples.py}
+\insertcode{main.py}
+
+\section*{Definizione dei correlati}
+\lstset{language=Java}
+\insertcode{Album.java}
+\insertcode{MyQuery.java}
+\insertcode{TFIDF.java}
+\insertcode{Similarity.java}
+\insertcode{Recommender.java}
+\insertcode{Main.java}
+
+\section*{Visualizzazione Web}
+\lstset{language=JavaScript}
+\insertcode{app.js}
+\insertcode{index.js}
+\lstset{language=HTML5}
+\insertcode{index.ejs}
+\lstset{language=JavaScript}
+\insertcode{music.js}
+\insertcode{query.js}
+\lstset{language=HTML5}
+\insertcode{table.ejs}
+
 
 \backmatter
 \clearpage
 \addcontentsline{toc}{chapter}{\bibname}
-%\phantomsection
+\nocite{*}
 \bibliographystyle{sapthesis}
 \bibliography{bib_tesi}
 
