@@ -3,10 +3,10 @@
 \usepackage{microtype}
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
 
 %\usepackage{hyperref}
 %\hypersetup{pdftitle={Semantic Search App},pdfauthor={Matteo Mancanelli}}
-
 
 \title{Semantic Search App: strutturazione, correlazione e ricerca semantica dell'informazione multimediale}
 \author{Matteo Mancanelli}
@@ -18,8 +18,38 @@
 \advisor{Prof. Riccardo Rosati}
 \authoremail{mancanelli.1711823@studenti.uniroma1.it}
 
-\usepackage{graphicx}
+\include{packages}
+
+\lstdefinestyle{Style1}{
+	backgroundcolor=\color{yellow!13},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	commentstyle=\usefont{T1}{pcr}{m}{sl}\color{green},
+	deletekeywords={},
+	firstnumber=1,
+	frame=single,
+	frameround=tttt,
+	keywordstyle=\color{blue}\bf,
+	morekeywords={rdf, owl},
+	numbers=left,
+	numbersep=10pt,
+	numberstyle=\tiny\color{gray},
+	rulecolor=\color{black},
+	showstringspaces=false,
+	showtabs=false,
+	stepnumber=5,
+	stringstyle=\color{purple},
+	tabsize=2,
+}
+
+\newcommand{\insertcodec}[2]{\lstinputlisting[caption=#2,label=#1,style=Style1]{#1}}
+\newcommand{\insertcode}[1]{\lstinputlisting[label=#1,style=Style1]{#1}}
 \newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -65,7 +95,7 @@ Per esprimere i metadati si utilizzano i linguaggi di annotazione (o markup lang
 Ai linguaggi di annotazione si aggiunge uno degli elementi chiave nel Web semantico, le ontologie. Una ontologia è "una rappresentazione formale ed esplicita di una concettualizzazione di un dominio di interesse". In altre parole si parla di un sistema formale in cui è possibile esprimere enunciati e dedurre le loro conseguenze logiche in modo del tutto meccanico.
 Il ruolo delle ontologie emerge nel momento in cui i soli linguaggi di annotazione non sono in grado di legare i concetti e di stabilire le relazioni che intercorrono fra di essi. La più semplice relazione definibile fra due termini è la relazione di sussunzione (o is-a) nell'ambito della creazione di una tassonomia.\medskip
 
-Il mezzo comunemente utilizzato per la definizione delle ontologie è rappresentato delle logiche descrittive. Queste sono impiegate soprattutto per esprimere la conoscenza in termini di concetti e relazioni che li caratterizzano. I costrutti base utilizzati sono i predicati unari (concetti atomici), i predicati binari (ruoli atomici) e gli individui.
+Il mezzo comunemente coinvolto per la definizione delle ontologie è rappresentato delle logiche descrittive. Queste sono impiegate soprattutto per esprimere la conoscenza in termini di concetti e relazioni che li caratterizzano. I costrutti base utilizzati sono i predicati unari (concetti atomici), i predicati binari (ruoli atomici) e gli individui.
 Il fine è quello di fornire rigore formale e associare procedure automatiche di ragionamento. Una base di conoscenza comprende due componenti fondamentali, la prima per la definizione della conoscenza intensionale (TBox), utile nell'ambito dei concetti e delle relazioni, e la seconda per la conoscenza estensionale (ABox), utile nell'ambito degli oggetti presi in esame.\medskip
 
 \MakeUppercase{è} evidente come l'uso di una ontologia rispecchia la necessità esplicitata di conoscere la semantica dell'informazione ed eseguire inferenze per far emergere nuova conoscenza in precedenza celata.
@@ -74,7 +104,7 @@ L'attività di inferenza permette così di estendere l'insieme degli assiomi ass
 Per perseguire l'obiettivo di garantire ai dati un ruolo di primo piano nel nuovo paradigma, si introducono infine i concetti di vocabolario e Linked Data. Un vocabolario è una struttura condivisa per la rappresentazione delle informazioni che afferiscono ad uno stesso dominio.
 La possibilità di organizzare la conoscenza integrando i dati provenienti da diversi vocabolari ed eliminando le ambiguità con l'aiuto dei reasoner permette uno sviluppo indipendente e distribuito dei diversi domini, piuttosto che la creazione di un unica struttura poco modulare e complessa da processare.\medskip
 
-Accanto all'uso di vocabolari e ontologie è necessario avere delle norme per rendere disponibili grandi quantità di dati e per far sì che possano essere trattati correttamente. Si parla quindi di Linked Data per riferirsi alle modalità di pubblicazione dei dati strutturati, utili per la successiva integrazione con altre informazioni preesistenti e l'interrogazione semantica.
+Accanto all'uso di vocabolari e ontologie è necessario avere delle norme per rendere disponibili grandi quantità di dati e per far dì che possano essere trattati correttamente. Si parla quindi di Linked Data per riferirsi alle modalità di pubblicazione dei dati strutturati, utili per la successiva integrazione con altre informazioni preesistenti e l'interrogazione semantica.
 I dataset più celebri sono quelli che compongono il progetto Linked Open Data (LOD), l'esempio meglio rappresentativo dell'utilizzo dei nuovi strumenti per la gestione dei dati annotati e per la definizione semantica degli stessi.\medskip
 
 \section{Tecnologie}
@@ -96,14 +126,14 @@ Alcuni elementi che possono essere utilizzati all'interno dello stesso RDF sono 
 RDFa (RDF in attributes) è una raccomandazione W3C per l'integrazione di annotazioni semantiche all'interno dei documenti HTML e XHTML. Si possono infatti aggiungere le triple RDF sfruttando un insieme di attributi definiti dal nuovo standard, in modo tale da arricchire il contenuto informativo delle pagine Web e renderle fruibili tanto agli utenti umani quanto agli agenti che processano i metadati.
 L'inserimento e la successiva estrazione di triple da un documento HTML si basa sul concetto di contesto: questo rappresenta il soggetto della tripla, al quale verranno associati tutti i valori dei successivi attributi fino al nuovo cambio di contesto.\medskip
 
-Il primo passo verso la creazione di un linguaggio ontologico è quello di RDF-S (RDF Schema), pensato per aggiungere elementi che non possono essere espressi con il solo framework RDF. In particolare si possono definire relazioni tra termini generici invece che tra individui, con nuovi costrutti che classificano risorse e proprietà.
-Tali relazioni possono ancora essere rappresentate con un grafo orientato e viene mantenuta quindi la stessa sintassi utilizzata per RDF anche per gli altri linguaggi del Web semantico (approccio same-syntax). Una dichiarazione con RDF-S può essere vista come un vincolo sulla base di dati delle triple RDF. Una importante caratteristica delle dichiarazioni in RDF/RDF-S consiste nella possibilità di parlare di sé. Si parla in questo caso di proprietà di riflessività del linguaggio.\medskip
+Il primo passo verso la creazione di un linguaggio ontologico è quello di RDF-d (RDF Schema), pensato per aggiungere elementi che non possono essere espressi con il solo framework RDF. In particolare si possono definire relazioni tra termini generici invece che tra individui, con nuovi costrutti che classificano risorse e proprietà.
+Tali relazioni possono ancora essere rappresentate con un grafo orientato e viene mantenuta quindi la stessa sintassi utilizzata per RDF anche per gli altri linguaggi del Web semantico (approccio same-syntax). Una dichiarazione con RDF-d può essere vista come un vincolo sulla base di dati delle triple RDF. Una importante caratteristica delle dichiarazioni in RDF/RDF-d consiste nella possibilità di parlare di dé. Si parla in questo caso di proprietà di riflessività del linguaggio.\medskip
 
 \subsection{OWL}
 Una più completa ed espressiva famiglia di linguaggi ontologici è OWL: questo strumento è stato realizzato per estendere le possibilità concesse dagli standard precedenti e costruire ontologie sempre più complesse, basate su definiti formalismi e sulle procedure di ragionamento automatico. La famiglia OWL si compone di tre differenti linguaggi: OWL-Lite, OWL-DL, OWL Full.
 Questi si differenziano per le possibilità che offrono nell'ambito della potenza espressiva. La ricerca di una maggiore espressività, e quindi di una più ampia capacità di costruzione delle ontologie, sacrifica però uno degli aspetti fondamentali del Web semantico, la decidibilità logica (o la trattabilità in termini di costo computazionale nel processo di reasoning).\medskip
 
-A differenza di quanto accade in RDF-S, OWL permette di costruire una classe enumerandone gli individui o utilizzando gli operatori insiemistici come l'unione, l'intersezione o il complemento. Inoltre è possibile costruire proprietà con vincoli come quelli di quantificazione esistenziale,  di quantificazione universale, di cardinalità minima e di cardinalità massima.\medskip
+A differenza di quanto accade in RDF-d, OWL permette di costruire una classe enumerandone gli individui o utilizzando gli operatori insiemistici come l'unione, l'intersezione o il complemento. Inoltre è possibile costruire proprietà con vincoli come quelli di quantificazione esistenziale,  di quantificazione universale, di cardinalità minima e di cardinalità massima.\medskip
 
 \subsection{SPARQL}
 L'ultima delle tecnologie fondamentali nate per il supporto del Web semantico è SPARQL, un linguaggio di interrogazione utile per estrarre i dati codificati in basi di triple RDF. Questo strumento è stato reso standard nel 2008 dal Data Access Working Group, gruppo di lavoro del consorzio W3C. Così come SQL riflette, nella rappresentazione delle query, il modello relazionale su cui si applica, allo stesso modo SPARQL basa la propria rappresentazione sul concetto di grafo: una interrogazione viene espressa come il pattern di un grafo RDF e la risposta a tale interrogazione è costituita da tutte e sole le triple che istanziano quel pattern (graph matching).\medskip
@@ -137,10 +167,10 @@ Le relazioni binarie fra entità del diagramma sono tradotte nelle Object Proper
 \chapter{Vector Space Model}
 \section{Sistemi di Raccomandazione}
 
-I sistemi di raccomandazione sono software di manipolazione del contenuto informativo, largamente utilizzati per gestire grandi quantità di dati e selezionare gli stessi in funzione di una migliore fruizione da parte degli utenti a cui sono rivolti. Questi sistemi vengono impiegati in modo evidente soprattutto dalle piattaforme online che operano in ambito e-commerce, come Amazon, e streaming on demand, fra cui Netflix e Spotify. Un sistema di raccomandazione si rende perciò indispensabile in tutte le occasioni in cui è necessario contenere il volume delle informazioni e creare un metodo di filtraggio per la visualizzazione e la presentazione. L'obiettivo: aiutare le persone ad effettuare scelte in base alle proprie preferenze. In modo più formale: detto $C$ l'insieme degli utenti e $S$ l'insieme degli elementi, il migliore elemento per un utente è quello che massimizza la funzione di utilità $u(c,s)$.
+I sistemi di raccomandazione sono software di manipolazione del contenuto informativo, largamente utilizzati per gestire grandi quantità di dati e selezionare gli stessi in funzione di una migliore fruizione da parte degli utenti a cui sono rivolti. Questi sistemi vengono impiegati in modo evidente soprattutto dalle piattaforme online che operano in ambito e-commerce, come Amazon, e streaming on demand, fra cui Netflix e Spotify. Un sistema di raccomandazione si rende perciò indispensabile in tutte le occasioni in cui è necessario contenere il volume delle informazioni e creare un metodo di filtraggio per la visualizzazione e la presentazione. L'obiettivo: aiutare le persone ad effettuare scelte in base alle proprie preferenze. In modo più formale: detto $C$ l'insieme degli utenti e $D$ l'insieme degli elementi, il migliore elemento per un utente è quello che massimizza la funzione di utilità $u(c,d)$.
 
 \[
-\forall \, c \in C, \quad \hat{s}_c = \argmax_{s \in S} \, u(c, s)
+\forall \, c \in C, \quad \hat{d}_c = \argmax_{d \in D} \, u(c, d)
 \]
 
 \medskip
@@ -152,21 +182,21 @@ In base alla tecnica usata per ottenere le raccomandazioni, i sistemi possono es
 Questo criterio è principalmente utilizzato nell'analisi di documenti testuali e pagine web ed estende alcuni degli approcci tipici dell'information retrieval. Si impiegano a tal proposito metodi quali Vector Space Model e Neural Networks per estrarre relazioni fra i documenti e fornire le raccomandazioni agli utenti. Il principale svantaggio risiede nella necessità di una conoscenza approfondita delle feature (caratteristiche) sulle quali fondare la valutazione. Nello stesso tempo però non si richiede la profilazione degli utenti e la condivisione delle loro informazioni, favorendo così la protezione della privacy.\medskip
 
 Il metodo collaborativo crea dei suggerimenti utilizzando la similarità tra gli utenti. Si registrano le scelte del maggior numero di persone e si forniscono raccomandazioni associandole in gruppi definiti neighborhood. Utenti con stesse preferenze possono quindi scambiare indirettamente diverse informazioni fra loro, suggerendo nuovi contenuti attraverso il sistema.
-In questo caso, l'utilità $u(c,s)$ dell'elemento $s$ per la persona $c$ è basata sull'utilità $u(c',s)$ assegnata ad $s$ dalle persone $c' \in C' \subseteq C$ che sono simili a $c$. Anche questo metodo, nonostante sia più dinamico e attuale, non è esente da particolari svantaggi, primi fra tutti la scalabilità, la sparsità dei dati e la mancanza di sufficienti informazioni sugli utenti che si autenticano per la prima volta o che non condividono il loro profilo.\medskip
+In questo caso, l'utilità $u(c,d)$ dell'elemento $d$ per la persona $c$ è basata sull'utilità $u(c',d)$ assegnata a $d$ dalle persone $c' \in C' \subseteq C$ che sono simili a $c$. Anche questo metodo, nonostante sia più dinamico e attuale, non è esente da particolari svantaggi, primi fra tutti la scalabilità, la sparsità dei dati e la mancanza di sufficienti informazioni sugli utenti che si autenticano per la prima volta o che non condividono il loro profilo.\medskip
 
 Le tecniche usate per la realizzazione dell'approccio collaborativo sono svariate e spesso mutuate dai settori del machine learning e del data mining (model-based collaborative filtering). Si parla quindi di modelli probabilistici e algoritmi di apprendimento come le reti neurali, ma anche regole di associazione, alberi di decisione e clustering.
-In questi algoritmi, come per la funzione utilità, il rating $r_{c,s}$ della persona $c$ per l'oggetto $s$ viene calcolato sulla base dei rating $r_{c',s}$ delle persone più simili a $c$. In particolare è possibile usare una media pesata dei rating rispetto a tutti gli utenti $c'$ del tipo
+In questi algoritmi, come per la funzione utilità, il rating $r_{c,d}$ della persona $c$ per l'oggetto $d$ viene calcolato sulla base dei rating $r_{c',d}$ delle persone più simili a $c$. In particolare è possibile usare una media pesata dei rating rispetto a tutti gli utenti $c'$ del tipo
 
 \[
-r_{c,s} = \widetilde{r}_c + k \sum_{c' \in C'} sim(c,c') \cdot (r_{c',s} - \widetilde{r}_{c'})
+r_{c,d} = \widetilde{r}_c + k \sum_{c' \in C'} sim(c,c') \cdot (r_{c',d} - \widetilde{r}_{c'})
 \]
 
 dove
 
 \begin{itemize}
   \item $k$ è un fattore normalizzante del tipo $k = 1 / \sum |sim(c,c')|$
-  \item $\widetilde{r}_c$ è il rating medio di una persona, $\widetilde{r}_c = (1/|S_c|) \sum_{s \in S_c} r_{c,s}$
-  \item $S_c$ è l'insieme degli elementi relativi a $c$, ovvero $S_c = \{s \in S \, | \, r_{c,s} \neq 0\}$
+  \item $\widetilde{r}_c$ è il rating medio di una persona, $\widetilde{r}_c = (1/|D_c|) \sum_{d \in D_c} r_{c,d}$
+  \item $D_c$ è l'insieme degli elementi relativi a $c$, ovvero $D_c = \{d \in D \, | \, r_{c,d} \neq 0\}$
   \item $sim(c,c')$ è la similarità fra $c$ e $c'$
 \end{itemize}
 
@@ -177,8 +207,8 @@ L'approccio semantic-social si fonda perciò sulla modellazione delle reti socia
 
 \section{TF-IDF e Cosine Similarity}
 
-Come descritto in precedenza, uno dei metodi utilizzati per la realizzazione di un sistema di raccomandazione content-based è il Vector Space Model. Questo modello,  utilizzato spesso nell'ambito dell'information retrieval, consiste essenzialmente nel rappresentare gli elementi che dovranno essere raccomandati agli utenti in uno spazio vettoriale n-dimensionale.
-Ogni elemento $s \in S$ sarà descritto da un vettore del tipo $s_j = (w_{1j}, w_{2j}, ..., w_{nj})$. La dimensione dei vettori dipende dal numero di caratteristiche sulle quali si vuole basare il sistema, ad esempio un insieme di parole chiave nel caso in cui, come spesso accede, gli elementi rappresentano dei documenti testuali.\medskip
+Come descritto in precedenza, uno dei metodi utilizzati per la realizzazione di un sistema di raccomandazione content-based è il Vector Space Model. Questo modello,  adoperato spesso nell'ambito dell'information retrieval, consiste essenzialmente nel rappresentare gli elementi che dovranno essere raccomandati agli utenti in uno spazio vettoriale n-dimensionale.
+Ogni elemento $d \in D$ sarà descritto da un vettore del tipo $d_j = (w_{1j}, w_{2j}, ..., w_{nj})$. La dimensione dei vettori dipende dal numero di caratteristiche sulle quali si vuole basare il sistema, ad esempio un insieme di parole chiave nel caso in cui, come spesso accede, gli elementi rappresentano dei documenti testuali.\medskip
 
 Per quanto detto, è necessario stabilire il modo in cui calcolare le componenti $w_{ij}$ dei vettori. Il primo e più immediato procedimento consiste nell'assegnare solo coefficienti di tipo binario in base alla presenza di una determinata caratteristica nell'elemento analizzato. Un modello così semplice è però insufficiente per ottenere buoni risultati. Si estende perciò questo metodo contando il numero di occorrenze delle feature ricercate.
 \MakeUppercase{è} possibile per esempio contare le occorrenze dei termini rilevanti all'interno di un documento. Alcune parole molto frequenti possono però essere poco rilevanti e portare a classificazioni poco precise. Si ricorre quindi ad un modello più complesso, definito TF-IDF (term frequency - inverse document frequency). Il primo passo è calcolare la frequenza dei termini con elementi di normalizzazione. Detto $count(t,d)$ il numero di occorrenze del termine $t$ nel documento $d \in D$, è possibile utilizzare una delle seguenti formule
@@ -198,9 +228,9 @@ w_{ij} = t\!fidf_{i,j} = t\!f(i,j) \cdot idf(i)
 
 \medskip
 
-Una volta ricavati tutti i coefficienti dei vettori che rappresentano gli elementi del sistema, la raccomandazione può essere effettuata in base alla distanza di questi vettori. Più vicini sono i vettori, più simili saranno gli elementi sottostanti. In altre parole quindi si calcola, per ogni elemento, l'insieme dei suoi correlati: un utente potrà infatti apprezzare questi ultimi se ha scelto in precedenza l'oggetto di riferimento. Per ottenere la distanza fra due vettori è possibile certamente utilizzare la tradizionale distanza euclidea. Più utilizzata e più robusta per alcune situazioni inconsuete è invece la tecnica del coseno di similitudine: dati i vettori $s_1$ e $s_2$ si calcola il coseno dell'angolo fra loro compreso
+Una volta ricavati tutti i coefficienti dei vettori che rappresentano gli elementi del sistema, la raccomandazione può essere effettuata in base alla distanza di questi vettori. Più vicini sono i vettori, più simili saranno gli elementi sottostanti. In altre parole quindi si calcola, per ogni elemento, l'insieme dei suoi correlati: un utente potrà infatti apprezzare questi ultimi se ha scelto in precedenza l'oggetto di riferimento. Per ottenere la distanza fra due vettori è possibile certamente utilizzare la tradizionale distanza euclidea. Più utilizzata e più robusta per alcune situazioni inconsuete è invece la tecnica del coseno di similitudine: dati i vettori $d_1$ e $d_2$ si calcola il coseno dell'angolo fra loro compreso
 \[
-\cos(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1|| \, ||s_2||} = \frac{s_1^T s_2}{||s_1|| \, ||s_2||} = \frac{\sum_{i} w_{i1} w_{i2}}{\sqrt{\sum_{i} w_{i1}^2} \sqrt{\sum_{i} w_{i2}^2}}
+\cos(d_1, d_2) = \frac{d_1 \cdot d_2}{||d_1|| \, ||d_2||} = \frac{d_1^T d_2}{||d_1|| \, ||d_2||} = \frac{\sum_{i} w_{i1} w_{i2}}{\sqrt{\sum_{i} w_{i1}^2} \sqrt{\sum_{i} w_{i2}^2}}
 \]
 
 \begin{figure}[!ht]
@@ -211,11 +241,11 @@ Una volta ricavati tutti i coefficienti dei vettori che rappresentano gli elemen
 
 Il risultato ottenuto avrà sempre un valore compreso tra $0$ e $1$, se le componenti dei vettori impiegati sono numeri razionali non negativi. Un risultato pari ad uno corrisponde ad una maggiore somiglianza degli elementi considerati. Il coseno di similitudine non fa altro che dividere il prodotto scalare fra i vettori con la loro norma, in modo tale che documenti possano avere valori maggiori in base alla loro lunghezza. In sostituzione di questa tecnica, altre misure utilizzate sono il coefficiente di Dice
 \[
-sim(s_1, s_2) = 2 \, \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2} = 2 \, \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2}
+sim(d_1, d_2) = 2 \, \frac{d_1 \cdot d_2}{||d_1||^2 + ||d_2||^2} = 2 \, \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2}
 \]
 e il coefficiente di Jaccard
 \[
-sim(s_1, s_2) = \frac{s_1 \cdot s_2}{||s_1||^2 + ||s_2||^2 - s_1 \cdot s_2} = \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2 - \sum_{i} w_{i1} w_{i2}}
+sim(d_1, d_2) = \frac{d_1 \cdot d_2}{||d_1||^2 + ||d_2||^2 - d_1 \cdot d_2} = \frac{\sum_{i} w_{i1} w_{i2}}{\sum_{i} w_{i1}^2 + \sum_{i} w_{i2}^2 - \sum_{i} w_{i1} w_{i2}}
 \]
 
 \medskip
@@ -229,9 +259,9 @@ Nonostante il vasto impiego dei modelli probabilistici, il Vector Space Model ma
 Il progetto si compone di diverse fasi, ognuna delle quali costituita da un modulo software autoconclusivo e sviluppata con linguaggi e framework differenti.\medskip
 
 In una fase preliminare viene disegnato il diagramma E-R sulla base dei dataset relativi al dominio di interesse. Questo costituisce il modello dei dati su cui viene creata l'ontologia OWL per modellizzare le entità e le relazioni del dominio: a tale scopo è stato impiegato l'editor Protégé, ampiamente utilizzato nell'ambito dello sviluppo delle basi di conoscenza.
-L'ontologia così formata viene successivamente popolata dai dati forniti da alcuni dei dataset della piattaforma Kaggle, opportunamente ristrutturati sottoforma di insieme di triple per rispondere ai requisiti di RDF. Il risultato di questa elaborazione consiste in un documento testuale in formato RDF/XML. Il lunguaggio utilizzato in questa fase è Python, con la libreria esterna rdflib.\medskip
+L'ontologia così formata viene successivamente popolata dai dati forniti da alcuni dei dataset della piattaforma Kaggle, opportunamente ristrutturati sottoforma di insieme di triple per rispondere ai requisiti di RDF. Il risultato di questa elaborazione consiste in un documento testuale in formato RDF/XML. Il lunguaggio usato in questa fase è Python, con la libreria esterna RDFLib.\medskip
 
-La seconda fase si pone come obiettivo quello di individuare le relazioni che intercorrono fra i dati analizzati ovvero di trovare, per ogni individuo presente nell'ontologia, un insieme di elementi ad esso correlati. A questo riguardo si è ricorso alla tecnica di raccomandazione del Vector Space Model, utile per fornire all'utente indicazioni relative alla similarità tra gli oggetti. Il prodotto di questa attività consiste in un nuovo documento del tutto analogo al precedente ma arricchito con le nuove informazioni estratte. Java ed il framework Jena sono gli strumenti utilizzati per l'impllementazione del metodo descritto.\medskip
+La seconda fase si pone come obiettivo quello di individuare le relazioni che intercorrono fra i dati analizzati ovvero di trovare, per ogni individuo presente nell'ontologia, un insieme di elementi ad esso correlati. A questo riguardo si è ricorso alla tecnica di raccomandazione del Vector Space Model, utile per fornire all'utente indicazioni relative alla similarità tra gli oggetti. Il prodotto di questa attività consiste in un nuovo documento del tutto analogo al precedente ma arricchito con le nuove informazioni estratte. Java ed il framework Jena sono gli strumenti adoperati per l'implementazione del metodo descritto.\medskip
 
 La terza ed ultima fase è preposta alla presentazione dei dati elaborati in precedenza. La visualizzazione avviene, utilizzando uno dei browser disponibili, nella tradizionale forma tabellare e fornisce funzioni supplementari per la navigazione delle informazioni. Queste ultime vengono reperite attraverso l'esecuzione di opportune query SPARQL dal documento prodotto nel corso delle prime due fasi. Lo sviluppo è stato realizzato con metodologia server-side impiegando in particolar modo Node.js ed il framework Express.js.
 
@@ -250,25 +280,81 @@ Per accedere ai dati memorizzati in un modello RDF, sia esse contenuto in memori
 
 \subsection{Node.js}
 
+Node.js è un ambiente run-time per l'esecuzione di codice JavaScript lato server e la produzione di pagine web dinamiche. Consente
+
 \chapter{Implementazione}
-\section{Kaggle e ER}
-\section{Protege e Python}
-\section{Java con query e correlazione}
-\section{Node.js con JQuery per paginazione e ricerca}
-\section{Prestazioni}
+\section{I dati}
+
+Nello sviluppo del presente progetto sono stati utilizzati diversi dataset che coinvolgono dettagliate informazioni relative all'ambito della multimedialità. Tali dataset sono stati ricavati dal vasto archivio presente sulla piattaforma online Kaggle e afferiscono a quattro principali categorie: libri, film, album musicali e videogiochi. I dati così ottenuti, contenuti in altrettanti file csv, sono il punto di partenza per l'intero sviluppo successivo del software.\medskip
+
+Dopo un iniziale preprocessamento dei file, utile per verificare la consistenza ed eliminare eventuali informazioni errate rispetto al dominio in esame, è possibile procedere con le prime fasi che caratterizzano il workflow. \MakeUppercase{è} stato perciò realizzato il diagramma E-R per definire in forma grafica lo schema concettuale dei dati presi in considerazione. Questo diagramma non si rende strettamente necessario per la successiva creazione dell'ontologia, ma si utilizza a tale scopo in questo progetto per mostrare come possa essere effettuata la traduzione fra i due modelli e come possano essere integrate le tecnologie del Web semantico con il più tradizionale metodo di progettazione delle basi di dati.\medskip
+
+\begin{center}
+\scalebox{.87}{
+\begin{tikzpicture}[node distance=0.5cm, every edge/.style={link}]
+  \node[entity] (media) {Media};
+  \node[isa] (isa) [below=0.5cm of media] {IS-A} edge (media);
+  \node[entity] (album) [below=0.5cm of isa] {Album} edge (isa);
+  \node[attribute] (genre) [left=1.0cm of album] {Genre} edge (album);
+  \node[attribute] (title) [above left=1.0cm of album] {\key{Title}} edge (album);
+  \node[attribute] (year) [below left=1.0cm of album] {Year} edge (album);
+  \node[attribute] (rating) [below=1.0cm of album] {Rating} edge (album);
+  \node[relationship] (rec) [right=0.5cm of album] {RecBy};
+  \node[relationship] (lab) [below right=1.5cm of album] {LabBy};
+  \node[entity] (artist) [right=0.5cm of rec] {Artist};
+  \node[entity] (label) [right=3.0cm of lab] {Label};
+  \draw[link] (album) edge (rec) (rec) edge (artist);
+  \draw[link] (album.-25) edge (lab) (lab) edge (label);
+  \node[isa] (isa2) [above=0.25cm of artist] {IS-A} edge (artist);
+  \node[isa] (isa3) [above=0.25cm of label] {IS-A} edge (label);
+  \node[entity] (org) [above=0.5cm of isa3] {Organization} edge (isa3);
+  \node[isa] (isa4) [above=0.35cm of org] {IS-A} edge (org);
+  \node[entity] (person) [above=0.45cm of isa2] {Person} edge (isa2) edge (isa4);
+  \node[entity] (agent) [above=0.5cm of isa4] {Agent} edge (isa4);
+\end{tikzpicture}
+}
+\end{center}
+
+Nello schema descritto, e allo stesso modo nei pragrafi successivi, si riduce lo studio all'ambito degli album musicali per una maggiore chiarezza espositiva. Il numero di classi e relazioni prese in considerazione quindi è molto maggiore rispetto a quanto viene rappresentato. Le altre categorie trattane nel software sono sviluppate in modo del tutto analogo.
+
+\section{L'ontologia}
+
+Parte del processo di sviluppo del progetto coinvolge certamente la creazione e l'interrogazione delle ontologie OWL. Questa fase coinvolge quindi la traduzione del diagramma E-R descritto in una base ontologica, sfruttando gli strumenti messi a disposizione dalla piattaforma Protégé-OWL. Come detto in precedenza, la traduzione non può avvenire senza tenere conto delle fondamentali differenze che intercorrono fra i due modelli di dati.\medskip
+
+L'entità Album, come le altre coinvolte nel dominio analizzato, diviene una classe dell'ontologia. Viene così creata una tassonomia che struttura gerarchicamente tutte le entità coinvolte, secondo le relazioni is-a mostrate. Inoltre si rende necessario esplicitare in OWL la disgiunzione fra le classi che hanno fra loro intersezione vuota, ovvero i cui individui non possono essere nello stesso momento oggetti di classi diverse. Album viene dichiarata quindi sottoclasse di Media e disgiunta da Book, Movie e Game. Gli attributi Title, Genre, Year e Rating divengono le Data Properties della classe e sono dichiarati functional in base alla loro cardinalità, mentre le relazioni RecordedBy e LabeledBy sono modellate nelle Object Properties, che legano una classe ad un'altra. Queste ultime possono essere descritte attraverso numerose caratteristiche, quali ad esempio functional, transitive, symmetric e reflexive. \MakeUppercase{è} importante notare come nell'ontologia viene perso il concetto di chiave primaria: l'attributo Title, come tutte le Data Properties, non può essere definito Inverse functional e questo impedisce la possibilità di considerarlo come una chiave senza fare riferimento al modello E-R originario. Al termine di questa fase, la base di conoscenza formata viene esportata in un documento OWL in formato RDF/XML*.\medskip
+
+Il documento così generato viene popolato in un secondo momento con un insieme di triple che codificano le informazioni dei dataset utilizzati. Con il supporto di Python vengono quindi letti i documenti csv e, una volta raggruppati in triple del tipo soggetto-predicato-oggetto, sono aggiunti i dati all'ontologia. Questo processo è agevolato dalla libreria RDFLib, che mette a disposizione diverse funzioni per istanziare un grafo RDF e manipolare le sue componenti: è possibile infatti accrescere il contenuto interno del grafo, ma anche eseguire il parsing di un documento e la serializzazione dei contenuti per la conseguente scrittura su file. Al termine di questa fase si otterrà come risultato un documento completo e arricchito di tutte le informazioni necessarie, che rispetta nella struttura alcuni dei principi descritti nell'ambito del Web semantico. Sarà definito quindi non solo il livello intensionale, ma anche il livello estensionale della base di conoscenza, composta ora dalle definizioni di classi e proprietà e da tutti gli individui aggiunti con il semplice ma utile codice scritto. Nessuna libreria aggiuntiva è richiesta per l'esecuzione del programma.
+
+\section{La correlazione}
+
+Nello studio e nell'analisi di grandi quantità di dati è fondamentale cercare di estrarre le relazioni nascoste che intercorrono fra le informazioni, i pattern sottesi, i collegamenti implicitamente creati. A questo scopo è possibile scrivere opportuni moduli software per l'osservazione delle suddette relazioni. Nel presente progetto sono state utilizzate le tecniche del Vector Space Model per ottenere le correlazioni degli oggetti presenti nell'ontologia.\medskip
+
+Per il conseguimento dell'obiettivo dichiarato si è optato quindi per un metodo di filtraggio content-based: questo presenta infatti numerosi vantaggi se correttamente immerso nel contesto sviluppato. Il primo aspetto è sicuramente quello di mantenere in un ruolo di assoluta centralità l'informazione e la sua interpretazione da parte degli elaboratori. A questo si aggiunge una sorprendente efficacia, ottenuta a dispetto della semplicità del modello algebrico impiegato. I risultati inoltre non necessitano di alcuna azione da parte degli utenti e possono essere quindi ricavati anche in assenza di meccanismi di autenticazione e memorizzazione delle preferenze.\medskip
+
+Il sistema di raccomandazione sviluppato, in grado di suggerire per ogni elemento i suoi correlati, è stato realizzato con Java ed il relativo framework Jena. Quet'ultimo consente l'uso di classi e di metodi per istanziare un modello, per estrarne i dati attraverso l'uso di appropriate interrogazioni ed per la finale scrittura dei dati. Al termine dell'esecuzione viene corredata l'ontologia con le informazioni ricavate. A questo proposito si aggiunge una nuova Object Property che mette in relazione un individuo di una classe con un altro individuo della stessa classe. Questa proprietà viene definita correlatedWith e restituisce l'idea di affinità fra i due oggetti coinvolti.\medskip
+
+Le prime classi Java scritte in questa fase sono le classi in grado di istanziare gli elementi del dominio e prendono il nome dalle quattro categorie da cui provengono questi stessi elementi, ovvero Album, Book, Movie e Game. La classe MyQuery contiene invece i metodi responsabili per la corretta esecuzione delle interrogazioni SPARQL e della successiva organizzazione delle risposte ottenute in adeguate strutture dati. Questi metodi servono per estrarre dal documento OWL tutte e sole le triple che afferiscono ad una determinata categoria, ad esempio quella degli Album, ed effettuare controlli sull'integrità dei contenuti così ricavati.\medskip
+
+Le operazioni che implementano il vero e proprio metodo del Vector Space Model sono infine contenute nelle classi TFIDF, Similarity e Recommender. Le prime due, come suggerisce il nome stesso, sono preposte rispettivamente alla creazione dei vettori che rappresenteranno gli individui con il calcolo delle loro componenti e alla misura della distanza fra i suddetti vettori attraverso la misura del coseno di similitudine. In particolare, il numero delle componenti dei vettori  stabilito in base alle caratteristiche considerate come rilevanti ai fini della correlazione. Ogni album musicale ad esempio viene descritto con un vettore di tre componenti, ognuna delle quali relativa all'artista che lo ha prodotto, all'anno in cui è uscito e ai generi musicali a cui appartiene. Questi sono gli aspetti che in fase di progettazione sono stati individuati per stabilire le correlazioni. I vettori fra loro più vicini, ovvero con un angolo compreso di minore ampiezza, sono considerati in relazione fra loro e possono essere suggeriti come simili ad un utente fruitore del serizio. La classe Recommender non fa altro che chiamare i metodi delle due precedenti per rendere effettivo il sistema di raccomandazione. Un ultimo file, contenente la classe Main, è responsabile della ripetizione del processo per ogni contenuto estratto dall'interrogazione e della scrittura dei correlati all'interno del documento che contiene l'ontologia e l'insieme di triple, attraverso l'opportuna proprietà in precedenza definita.
+
+\section{La visualizzazione}
+
+
+
+\section{La paginazione e la ricerca}
+
+
+
 
 \chapter{Conclusioni}
-\section{Risultati Ottenuti}
+\section{Risultati}
+%Questo documento sarà del tipo seguente
 
+%\lstset{language=XML}
+%\insertcode{myontology.owl}
 
 \chapter*{Argomenti}
 \begin{enumerate}
-  \item Obiettivi e strumenti
-  \item Dominio di interesse
-  \item Dati Utilizzati (Kaggle) e manipolazione preliminare
-  \item Diagrammi ER e ontologico
-  \item Creazione Ontologia OWL (Protege)
-  \item Triple RDF da csv (Python e rdflib)
   \item Correlazione (Java e Jena)
   \item Query semantiche (da SQL a SPARQL)
   \item Rappresentazione Web (UI)
