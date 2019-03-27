@@ -1,7 +1,5 @@
 # Semantic-Web
 
-(In corso di sviluppo...)
-
 ### Datasets
 I dati non sono presenti nel repository.
 
